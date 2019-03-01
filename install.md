@@ -1,0 +1,135 @@
+# Basilisk II Installation Instructions
+
+## System Requirements
+
+To use Basilisk II, you need either a 512K Mac Classic ROM image or a 512K or 1MB 32-bit clean Macintosh ROM image. You also need a copy of MacOS (0.x thru 7.5 for Classic emulation, 7.x or 8.0/8.1 for Mac II emulation). For copyright reasons, none of these items are included with Basilisk II. MacOS 7.5.3 and earlier versions can be downloaded from Apple and various other Internet sites. Mac ROM files are not freely available. You have to own a real Mac and read out its ROM. No, I don't know where you can download ROM files. No, I won't send you one.
+
+Depending on the platform you use, Basilisk II has additional requirements:
+
+### BeOS
+
+You need BeOS R4 or later versions. Basilisk II cannot do Mac Classic emulation.
+
+### Unix
+
+You need X11R6 and a "make" utility with the VPATH feature (e.g. GNU make). For serial, ethernet and audio support, you need pthreads. To use the GUI preferences editor, you also need GTK+ version 1.2 or better. On Linux, you need glibc 2.0 or better.
+
+### AmigaOS
+
+You need at least a 68020 and AmigaOS 3.0 or better. To get the GUI preferences editor, you need gtlayout.library V39 or later. To get sound output, you need AHI V2 or later. Both items can be found on Aminet. You also need the "PrepareEmul" utility that somes with ShapeShifter (or any equivalent PrepareEmul substitute). The AmigaOS version of Basilisk II cannot do Mac Classic emulation.
+
+### Windows
+
+You need at least Windows NT 4.0. Windows 95 and 98 can be used too, with a somewhat reduced set of features. Basilisk II supports DirectX version 5 or later, but version 3 may also work, depending on your graphics card.
+
+### Mac OS X
+
+Versions 10.0 thru 10.2 can be used, and 10.3 will probably be no problem. (OS X public beta is not supported by the current executable or source code, but if you really need to use it, I can provide versions that will work)
+
+## Installation
+
+### BeOS
+
+If you have a binary distribution of Basilisk II for BeOS, there are executables for BeOS/PPC and/or BeOS/x86 included. Basilisk II cannot run concurrently with SheepShaver. Trying to do so will crash Basilisk II, or SheepShaver, or both.
+
+If you have the source distribution, do the following:
+
+```
+cd src/BeOS
+make
+```
+
+This will produce an executable "BasiliskII" in the "obj.ppc" or "obj.x86" directory. To use Ethernet, you also have to do:
+
+```
+cd SheepNet
+make install
+```
+
+On a PowerPC system, you also have to do:
+
+```
+cd SheepDriver
+make install
+```
+
+### Unix
+
+To compile Basilisk II, do the following:
+
+```
+cd src/Unix
+./configure
+make            [or "gmake" if you have GNU make and "make" fails]
+make install    [optionally]
+```
+
+To use Ethernet networking under Linux, you either have to configure your kernel for ethertap support or make and install the "sheep_net" driver (this is explained in the README file, at the description of the "ether" preferences item).
+
+This is what Brian J. Johnson says about compiling for IRIX:
+
+_I recommend compiling with "-Ofast". This requires changing "-g" to "-Ofast" in the Makefile, and adding "-ipa" to LDFLAGS. This turns on massive interprocedural optimization, and makes for much better performance._
+
+#### Attention: NetBSD/m68k USERS
+
+  If you want to run Basilisk II natively (i.e. without CPU emulation), you
+  must NOT use a pthreads library. User-level threads libraries such as PTL
+  interfere with the signal handlers installed by Basilisk II and kernel-
+  level threads are not supported by NetBSD, so you will have to live without
+  pthreads, and thus without serial/ethernet/audio support (but the "UDP
+  tunnelling" network should work).
+
+#### Attention: NetBSD/mac68k USERS
+
+  Current (as of July 2000) versions of the NetBSD/mac68k kernel have a bug
+  that not only prevents Basilisk II from running properly but seems to even
+  cause kernel panics under certain conditions! Apply the following patch to
+  /sys/arch/mac68k/mac68k/macromasm.s, recompile and re-install the kernel
+  and reboot before using Basilisk II:
+
+```
+--- macromasm.s.orig    Wed Jul  5 19:29:01 2000
++++ macromasm.s Wed Jul  5 19:12:34 2000
+@@ -37,6 +37,8 @@
+ 
+ #include "opt_adb.h"
+ #include "assym.h"
++#include <machine/asm.h>
++#include <machine/trap.h>
+
+
+        /* Define this symbol as global with (v) value */
+@@ -437,8 +439,9 @@
+        movw    sp@(FR_HW + 4), d0      | retrieve status register
+        andw    #PSL_S, d0      | supervisor state?
+        bne     Lalnosup        | branch if supervisor
+-       jbsr    _mrg_aline_user | user a-line trap
+-       bra     Lalrts
++       addql   #4, sp          | pop frame ptr
++       movql   #T_ILLINST, d0  | user-mode fault
++       jra     _ASM_LABEL(fault)
+ Lalnosup:
+ #define FR_PC (FR_HW+2)
+        movl    sp@(FR_PC + 4), a0      | retrieve PC
+```
+
+### AmigaOS
+
+If you have a binary distribution of Basilisk II for AmigaOS, there is an executable included. You must also have the "PrepareEmul" utility installed that comes with ShapeShifter (or any equivalent PrepareEmul substitute, see the ShapeShifter docs). If you have the source distribution, do the following:
+
+```
+cd src/AmigaOS
+make
+```
+
+To recompile Basilisk II, you need the GeekGadgets development suite and PhxAss (which can be found on Aminet).
+
+### Windows NT
+
+If you have a binary distribution of Basilisk II for Windows, there is a Windows NT binary included. To access CD-ROMs under Windows NT, the driver "cdenable.sys" must be copied to your "\WinNT\System32\drivers" directory. To access CD-ROMs under Windows 9x, the driver "cdenable.vxd" must be copied to the "\Windows\System" directory. To recompile Basilisk II, you need MS Visual V++ 5.0 or later. Symantec C++ should work, too, with some modifications. See the "sysdeps.h" file in the "Windows" directory.
+
+### Mac OS X
+
+If you have the prebuilt application, there is nothing to do. If you have the developer tools installed, and want to built it yourself, look in the file src/MacOSX/0_HOW_TO_BUILD.txt
+
+The ROM file has to be named "ROM" and put in the same directory as the Basilisk II executable but you can specify a different location for the ROM file with the "rom" option in the preferences file (or with the preferences GUI).

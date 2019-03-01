@@ -1,7 +1,7 @@
-SheepShaver NEWS -- history of user-visible changes.  2006-05-14
+# SheepShaver – history of user-visible changes
 Copyright (C) 1997-2006 Christian Bauer and Marc Hellwig
 
-Version 2.3 (snapshot) - 14.May.2006
+## Version 2.3 (snapshot), 2006-05-14
 * Handle up to 1 GB of Mac memory
 * Improve SLiRP network emulation performance
 * Fix Native QuickDraw acceleration
@@ -12,24 +12,24 @@ Version 2.3 (snapshot) - 14.May.2006
 * Fix extfs volume name to "Unix" (Toshimitsu Tanaka)
 * Fix unaligned accesses in SLiRP network emulation (Brian J. Johnson)
 * Initial port to IRIX/mips
-* MacOS X:
-  o Port to MacOS X for Intel, including the JIT
-  o Add a primitive graphical preferences editor
-  o Add support for run-time CD-ROM auto-detection
-  o Fix clipboard (copy/paste of text from/to the host OS)
-  o Fix extfs to preserve native folder attributes
-  o Fix extfs to handle file/folder creation times
-  o Fix SLiRP network emulation (workaround MacOS X bugs)
-  o Improve overall performance on PowerPC (by a factor 2)
-* Windows:
-  o Add SLiRP network emulation ("ether slirp")
-  o Add TAP-Win32 network emulation ("ether tap")
-  o Fix CD-ROM auto-detection ("pollmedia" now works)
-  o Fix idle sleep ("idlewait" now works)
-  o Fix native cursor to be updated as soon as MacOS modified it
-  o Improve GUI for network configuration
+* **MacOS X:**
+  - Port to MacOS X for Intel, including the JIT
+  - Add a primitive graphical preferences editor
+  - Add support for run-time CD-ROM auto-detection
+  - Fix clipboard (copy/paste of text from/to the host OS)
+  - Fix extfs to preserve native folder attributes
+  - Fix extfs to handle file/folder creation times
+  - Fix SLiRP network emulation (workaround MacOS X bugs)
+  - Improve overall performance on PowerPC (by a factor 2)
+* **Windows:**
+  - Add SLiRP network emulation ("ether slirp")
+  - Add TAP-Win32 network emulation ("ether tap")
+  - Fix CD-ROM auto-detection ("pollmedia" now works)
+  - Fix idle sleep ("idlewait" now works)
+  - Fix native cursor to be updated as soon as MacOS modified it
+  - Improve GUI for network configuration
 
-Version 2.3 (snapshot) - 30.Nov.2005
+## Version 2.3 (snapshot), 2005-11-30
 * Add fullscreen DGA mode via fbdev in Linux
 * Add "screen" prefs item a-la Basilisk II
 * Add missing lvsl/lvsr instructions in AltiVec emulation (Adobe FrameMaker)
@@ -51,7 +51,7 @@ Version 2.3 (snapshot) - 30.Nov.2005
 * Fix SDL/x11 native cursor acceleration
 * Fix sheep_net driver to properly work with Linux kernels up to 2.6.11
 
-Version 2.3 (snapshot) - 21.Mar.2005
+## Version 2.3 (snapshot), 2005-05-21
 * Implement high-precision timings on POSIX systems
 * Add other SDL keysym translations
 * Add some SSE2 optimizations to the AltiVec emulation core
@@ -63,7 +63,7 @@ Version 2.3 (snapshot) - 21.Mar.2005
 * Fix crash in Apple Personal Diagnostics on MacOS 9
 * Fix crash in Power Management on MacOS 9
 
-Version 2.3 (snapshot) - 07.Jul.2004
+## Version 2.3 (snapshot), 2004-07-07
 * Add support for MacOS 9.0.4
 * Add native port to MacOS X with SDL graphics
 * Fix timebase emulation. UpTime() is now more accurate
@@ -72,7 +72,7 @@ Version 2.3 (snapshot) - 07.Jul.2004
 * Fix video thread cancellation on MacOS X
 * Fix detection of PowerPC 750FX and 970 processors
 
-Version 2.3 (snapshot) - 09.Jun.2004
+## Version 2.3 (snapshot), 2004-06-09
 * Improve generic JIT engine to reach around 1/8-th of native speeds
 * Improve 68k audio processing with "reentrant" JIT generated code
 * Add Native QuickDraw acceleration for BitBlt (srcCopy) and FillRect
@@ -82,12 +82,12 @@ Version 2.3 (snapshot) - 09.Jun.2004
 * Fix ethernet support on little endian and 64-bit systems
 * Fix initialization of NVRAM on first-time use
 
-Version 2.3 (snapshot) - 25.Feb.2004
+## Version 2.3 (snapshot), 2004-02-25
 * Improved generic JIT, FPU instructions are now translated
 * Add AltiVec emulation, emulated CPU is now a PowerPC 7400 (G4)
 * Add initial port to MacOS X with an X11 server
 
-Version 2.3 (snapshot) - 14.Jan.2004
+## Version 2.3 (snapshot), 2004-01-14
 * Fix several CPU emulation bugs, extended testsuite
 * Fix FPU emulation, "scrollbar" & Graphing Calculator bugs are gone
 * Add support for 64-bit platforms, more precisely AMD64 with JIT
@@ -97,9 +97,9 @@ Version 2.3 (snapshot) - 14.Jan.2004
 * Better support for audio output (with pre-G3 PowerMac PCI ROMs)
 * Improve native Linux/PPC port
 
-Version 2.3 (snapshot) - 25.Nov.2003
+## Version 2.3 (snapshot), 2003-11-25
 * Initial public release with PowerPC CPU emulator for testing
 
-Version 2.2 (release) - 04.Feb.2002
+## Version 2.2 (release), 2002-02-04
 * Source released under GPL
 * Integrated code from Basilisk II

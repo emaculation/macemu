@@ -34,21 +34,21 @@ If you have a binary distribution of Basilisk II for BeOS, there are executables
 
 If you have the source distribution, do the following:
 
-```
+```shell
 cd src/BeOS
 make
 ```
 
 This will produce an executable "BasiliskII" in the "obj.ppc" or "obj.x86" directory. To use Ethernet, you also have to do:
 
-```
+```shell
 cd SheepNet
 make install
 ```
 
 On a PowerPC system, you also have to do:
 
-```
+```shell
 cd SheepDriver
 make install
 ```
@@ -57,11 +57,11 @@ make install
 
 To compile Basilisk II, do the following:
 
-```
+```shell
 cd src/Unix
 ./configure
-make            [or "gmake" if you have GNU make and "make" fails]
-make install    [optionally]
+make            # or "gmake" if you have GNU make and "make" fails
+make install    # optionally
 ```
 
 To use Ethernet networking under Linux, you either have to configure your kernel for ethertap support or make and install the "sheep_net" driver (this is explained in the README file, at the description of the "ether" preferences item).
@@ -72,22 +72,13 @@ _I recommend compiling with "-Ofast". This requires changing "-g" to "-Ofast" in
 
 #### Attention: NetBSD/m68k USERS
 
-  If you want to run Basilisk II natively (i.e. without CPU emulation), you
-  must NOT use a pthreads library. User-level threads libraries such as PTL
-  interfere with the signal handlers installed by Basilisk II and kernel-
-  level threads are not supported by NetBSD, so you will have to live without
-  pthreads, and thus without serial/ethernet/audio support (but the "UDP
-  tunnelling" network should work).
+If you want to run Basilisk II natively (i.e. without CPU emulation), you must NOT use a pthreads library. User-level threads libraries such as PTL interfere with the signal handlers installed by Basilisk II and kernel- level threads are not supported by NetBSD, so you will have to live without pthreads, and thus without serial/ethernet/audio support (but the "UDP tunnelling" network should work).
 
 #### Attention: NetBSD/mac68k USERS
 
-  Current (as of July 2000) versions of the NetBSD/mac68k kernel have a bug
-  that not only prevents Basilisk II from running properly but seems to even
-  cause kernel panics under certain conditions! Apply the following patch to
-  /sys/arch/mac68k/mac68k/macromasm.s, recompile and re-install the kernel
-  and reboot before using Basilisk II:
+Current (as of July 2000) versions of the NetBSD/mac68k kernel have a bug that not only prevents Basilisk II from running properly but seems to even cause kernel panics under certain conditions! Apply the following patch to /sys/arch/mac68k/mac68k/macromasm.s, recompile and re-install the kernel and reboot before using Basilisk II:
 
-```
+```diff
 --- macromasm.s.orig    Wed Jul  5 19:29:01 2000
 +++ macromasm.s Wed Jul  5 19:12:34 2000
 @@ -37,6 +37,8 @@

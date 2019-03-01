@@ -1,15 +1,16 @@
+[![Build Status](https://travis-ci.org/emaculation/BasiliskII.svg)](https://travis-ci.org/emaculation/BasiliskII)
 
-  Basilisk II
-  A 68k Macintosh emulator
+# BasiliskII
+A 68k Macintosh emulator
 
-  Copyright (C) 1997-2008 Christian Bauer et al.
+Copyright (C) 1997-2008 Christian Bauer et al.
 
 
 License
 -------
 
 Basilisk II is available under the terms of the GNU General Public License.
-See the file "COPYING" that is included in the distribution for details.
+See the file "LICENSE" that is included in the distribution for details.
 
 
 Overview
@@ -548,7 +549,7 @@ udpport <IP port number>
 
 redir <port redirection description>
 
-  This item defines a port to be forwarded from the host to the client. 
+  This item defines a port to be forwarded from the host to the client.
   The format is "[protocol]:hostport:[clientaddress]:clientport", where
   protocol is "udp" or "tcp" (default), hostport is the port on your
   computer to forward to the Mac, clientaddress is the IP address of the Mac
@@ -750,7 +751,7 @@ Windows:
 
     If true (default), tries to automatically detect new media.
     Applies to all "floppy", "cd" or "disk" removable media except
-    1.44 MB floppies. May cause modest slow down. If unchecked, 
+    1.44 MB floppies. May cause modest slow down. If unchecked,
     use Ctrl-Shift-F11 to manually mount new media.
     If you have auto-insert notification (AIN) enabled, you may turn this
     option off. Note that some CD related software require AIN,
@@ -916,7 +917,7 @@ Acknowledgements
 
 Contributions by (in alphabetical order):
  - Orlando Bassotto <future@powercube.mediabit.net>: FreeBSD support
- - Gwenolé Beauchesne <gb@dial.oleane.com>: SPARC assembly optimizations,
+ - Gwenolï¿½ Beauchesne <gb@dial.oleane.com>: SPARC assembly optimizations,
    lots of work on the Unix video code, fixes and improvements to the
    JIT compiler
  - Marc Chabanas <Marc.Chabanas@france.sun.com>: Solaris sound support
@@ -925,7 +926,7 @@ Contributions by (in alphabetical order):
  - Bill Huey <billh@mag.ucsd.edu>: 15/16 bit DGA and 15/16/32 bit X11
    window support
  - Brian J. Johnson <bjohnson@sgi.com>: IRIX support
- - Jürgen Lachmann <juergen_lachmann@t-online.de>: AmigaOS CyberGraphX support
+ - Jï¿½rgen Lachmann <juergen_lachmann@t-online.de>: AmigaOS CyberGraphX support
  - Samuel Lander <blair_sp@hotmail.com>: tile-based window refresh code
  - David Lawrence <davidl@jlab.org>: incremental window refresh code
  - Bernie Meyer <bmeyer@csse.monash.edu.au>: original UAE-JIT code

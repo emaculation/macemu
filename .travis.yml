@@ -8,7 +8,7 @@ matrix:
       compiler: gcc
       env: BADGE=linux
       script:
-        - apt install -y libsdl1.2-dev libgtk2.0-dev
+        - sudo apt install -y libsdl1.2-dev libgtk2.0-dev
         - cd src/Unix
         - NO_CONFIGURE=1 ./autogen.sh
         - ./configure --enable-sdl-video --enable-sdl-audio --disable-vosf --disable-jit-compiler --with-x --with-gtk --with-mon

@@ -1,10 +1,17 @@
-[![Build Status](https://travis-ci.org/emaculation/BasiliskII.svg)](https://travis-ci.org/emaculation/BasiliskII)
+
 
 # BasiliskII
 A 68k Macintosh emulator
 
-Copyright (C) 1997-2008 Christian Bauer et al.
 
+Platform | CI Status|
+---------|:----------------
+AmigaOS  | [Deprecate 💀](https://github.com/emaculation/BasiliskII/issues/81)
+BeOS     | [Deprecate 💀](https://github.com/emaculation/BasiliskII/issues/82)
+FreeBSD  | [Costs 💰](https://cirrus-ci.org/pricing/)
+Linux    | [![Linux Build Status](http://badges.herokuapp.com/travis/emaculation/BasiliskII?env=BADGE=linux&label=build&branch=master)](https://travis-ci.org/emaculation/BasiliskII)
+OSX      | [![OSX Build Status](http://badges.herokuapp.com/travis/emaculation/BasiliskII?env=BADGE=osx&label=build&branch=master)](https://travis-ci.org/emaculation/BasiliskII) [Null ⚠️](https://github.com/emaculation/BasiliskII/issues/84)
+Windows  | [![Windows Build status](https://ci.appveyor.com/api/projects/status/b1h82askjdqev1on/branch/master?svg=true)](https://ci.appveyor.com/project/ianfixes/basiliskii) [Null ⚠️](https://github.com/emaculation/BasiliskII/issues/83)
 
 License
 -------
@@ -47,15 +54,21 @@ Some features of Basilisk II:
   - Uses UAE 68k emulation or (under AmigaOS and NetBSD/m68k) real 68k
     processor
 
-The emulator is not yet complete. See the file "TODO" for a list of
-unimplemented stuff.
+The emulator is not yet complete. See the GitHub issues for a list of
+unimplemented stuff: https://github.com/emaculation/BasiliskII/issues
 
 
 Requirements and Installation
 -----------------------------
 
-Please consult the file "INSTALL" for a list of system requirements and
+Please consult the file [INSTALL.md](INSTALL.md) for a list of system requirements and
 installation instructions.
+
+
+Warning
+=======
+
+All text below this line has not been updated in some time and may not reflect current URLs, contact information, markdown formatting, or instructions.
 
 
 Configuration

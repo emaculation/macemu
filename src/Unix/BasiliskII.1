@@ -1,50 +1,46 @@
-.TH BasiliskII 1 "January, 2002"
+.TH "BasiliskII" "1" "2019\-03\-03"
+.
+.\" Turn off justification for nroff
+.if n .ad l
+.\" Turn off hyphenation
+.nh
+.
 .SH NAME
 BasiliskII \- a 68k Macintosh emulator
 .SH SYNOPSIS
-.B BasiliskII
-[\-\-display
-.IR display-name ]
-[\-\-break
-.IR offset ]
-[\-\-rominfo]
+\fBBasiliskII\fR [\-\-display \fIdisplay\-name\fR] [\-\-break \fIoffset\fR] [\-\-rominfo]
 .SH DESCRIPTION
-.B Basilisk II
-
-is an Open Source 68k Macintosh emulator. That is, it enables you to
-run 68k MacOS software on you computer, even if you are using a
-different operating system. However, you still need a copy of MacOS
-and a Macintosh ROM image to use Basilisk II.
-
-.B Basilisk II
-:
-.TP
-- Emulates either a Mac Classic (which runs MacOS 0.x thru 7.5) or a Mac II series machine (which runs MacOS 7.x, 8.0 and 8.1), depending on the ROM being used
-.TP
-- Color video display
-.TP
-- CD quality sound output
-.TP
-- Floppy disk driver (only 1.44MB disks supported)
-.TP
-- Driver for HFS partitions and hardfiles
-.TP
-- CD-ROM driver with basic audio functions
-.TP
-- Easy file exchange with the host OS via a "Host Directory Tree" icon on the Mac desktop
-.TP
-- Ethernet driver
-.TP
-- Serial drivers
-.TP
-- SCSI Manager (old-style) emulation
-.TP
-- Emulates extended ADB keyboard and 3-button mouse
-.TP
-- Uses UAE 68k emulation or (under AmigaOS and NetBSD/m68k) real 68k processor
+\fBBasilisk II\fR is an Open Source 68k Macintosh emulator. That is, it enables you to run 68k MacOS software on you computer, even if you are using a different operating system. However, you still need a copy of MacOS and a Macintosh ROM image to use Basilisk II.
+.SS FEATURES
+.RS 0
+.IP - 2
+Emulates either a Mac Classic (which runs MacOS 0.x thru 7.5) or a Mac II series machine (which runs MacOS 7.x, 8.0 and 8.1), depending on the ROM being used
+.IP -
+Color video display
+.IP -
+CD quality sound output
+.IP -
+Floppy disk driver (only 1.44 MB disks supported)
+.IP -
+Driver for HFS partitions and hardfiles
+.IP -
+CD\-ROM driver with basic audio functions
+.IP -
+Easy file exchange with the host OS via a "Host Directory Tree" icon on the Mac desktop
+.IP -
+Ethernet driver
+.IP -
+Serial drivers
+.IP -
+SCSI Manager (old\-style) emulation
+.IP -
+Emulates extended ADB keyboard and 3\-button mouse
+.IP -
+Uses UAE 68k emulation or (under AmigaOS and NetBSD/m68k) real 68k processor
+.RE
 .SH OPTIONS
-.TP
-.BI "\-\-display " display-name
+.TP 4
+.BI "\-\-display " display\-name
 specifies the display to use; see
 .BR X (1)
 .TP
@@ -52,13 +48,12 @@ specifies the display to use; see
 specifies a ROM offset where a breakpoint will be placed (for debugging)
 .TP
 .B \-\-rominfo
-causes Basilisk II to print some information about the ROM being used on
-startup (for debugging)
+causes Basilisk II to print some information about the ROM being used on startup (for debugging)
 .TP
 .B \-\-help
 shows a complete list of options
 .SH FILES
-.TP
+.TP 4
 .I /usr/share/BasiliskII/keycodes
 X server keycodes definitions.
 .TP
@@ -69,26 +64,28 @@ Framebuffer device specifications.
 User-specific configuration file.
 .TP
 .I ~/.basilisk_ii_xpram
-Contents of Mac non-volatile RAM.
+Contents of Mac non\-volatile RAM.
+.SH SEE ALSO
+http://www.uni\-mainz.de/~bauec002/B2Main.html (Basilisk II homepage)
 .SH BUGS
 Several. See the included "TODO" file.
-.SH SEE ALSO
-http://www.uni-mainz.de/~bauec002/B2Main.html (Basilisk II homepage)
+.SH NOTES
+This flavour of Basilisk II is hosted at
+.br
+<https://github.com/emaculation/BasiliskII>
+.br
+and is maintained by
+.br
+Ian Katz <linkedin.com/in/ikatz>
+.br
+Reto Kromer <avpres.net>
 .SH AUTHOR
-Christian Bauer <Christian.Bauer@uni-mainz.de>
+Christian Bauer <Christian.Bauer@uni\-mainz.de>
 .SH COPYRIGHT
 Copyright \(co 1997-2004 Christian Bauer et al.
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+.PP
+This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+.PP
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+.PP
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.

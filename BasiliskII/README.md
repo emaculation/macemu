@@ -357,7 +357,7 @@ redir tcp:8000:10.0.2.15:80
 
 This item specifies the file name of the Mac ROM file to be used by Basilisk II. If no `rom` line is given, the ROM file has to be named "ROM" and put in the same directory as the Basilisk II executable.
 
-### b`ootdrive <drive number>`
+### `bootdrive <drive number>`
 
 Specify MacOS drive number of boot volume. `0` (the default) means "boot from first bootable volume".
 

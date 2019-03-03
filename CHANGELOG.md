@@ -1,8 +1,8 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to [Semantic Versioning](http://semver.org/) after v1.0.
+The format is based on [Keep a Changelog](https://keepachangelog.com/)
+and this project adheres to [Semantic Versioning](https://semver.org/) after v1.0.
 
 ## [Unreleased]
 ### Added
@@ -81,7 +81,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/) after v1.0
 
 ### Changed
 - Unix: some performance improvements to VOSF screen update code [Brian J. Johnson]
-- Unix: renewed `SIGSEGV` support functions. Side effect: configure script cleanups and probable Direct Addressing/VOSF support for other platforms (NetBSD, AIX, OSF/1, Irix) [Gwenole Beauchesne]
+- Unix: renewed `SIGSEGV` support functions. Side effect: configure script cleanups and probable Direct Addressing/VOSF support for other platforms (NetBSD, AIX, OSF/1, Irix) [Gwenolé Beauchesne]
 - Unix: `-Ofast` option is supplied to `MIPSPro` compiler [Brian J. Johnson]
 - Unix: FreeBSD `configure` script cleanups [Michael Alyn Miller]
 - Unix: `ether_linux.cpp` moved and renamed to `ether_unix.cpp`, now also works with the tap driver under FreeBSD [Michael Alyn Miller]
@@ -94,9 +94,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/) after v1.0
 
 ## V0.9 (snapshot) - 2001-02-17
 ### Added
-- Unix: added (experimental) real addressing mode [Gwenole Beauchesne] (activated through the `--enable-addressing=real` configure option)
-- Unix: added direct addressing mode [Gwenole Beauchesne] (default addressing mode, if possible)
-- Unix: added screen updates on SEGV signals [Gwenole Beauchesne] (activated through the `--enable-vosf` configure option)
+- Unix: added (experimental) real addressing mode [Gwenolé Beauchesne] (activated through the `--enable-addressing=real` configure option)
+- Unix: added direct addressing mode [Gwenolé Beauchesne] (default addressing mode, if possible)
+- Unix: added screen updates on SEGV signals [Gwenolé Beauchesne] (activated through the `--enable-vosf` configure option)
 - Unix: added IRIX audio driver [Brian J. Johnson]
 - AmigaOS: implemented XPRAM watchdog task
 - BeOS: implemented the `powerrom_cpu` CPU engine for BeOS/PPC that uses the 680x0 emulator contained in an Apple PowerMac ROM to run Basilisk II (ca. 4x speed improvement); when running on a BeBox, a PCI PowerMac ROM image is needed to use this (the path name of the ROM file can be set with the preferences item `powerrom`, default is `PowerROM`)
@@ -112,7 +112,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/) after v1.0
 - AmigaOS/Unix: it's possible to specify preferences items on the command line
 - `include/macos_util.h`: defines `FOURCC()` macro to make MacOS-like four-character-codes, replaced most instances of multi-character constants in the sources by this macro to avoid compiler warnings
 - Imported some changes from the Windows port, most notably FPU fixes and the 1 Hz interrupt [Lauri Pesonen]
-- Ported Lauri Pesonen's FPU core to GCC/i386 [Gwenole Beauchesne]
+- Ported Lauri Pesonen's FPU core to GCC/i386 [Gwenolé Beauchesne]
 
 ### Fixed
 - UAE cpu: fixed a bug in the memory handlers preventing from correctly updating 15 and 16 bpp displays on big endian systems
@@ -197,7 +197,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/) after v1.0
 ### Added
 - added external file system to access host OS files from the MacOS; root directory is specified by the `extfs` prefs item
 - added patches for NetBSD [Bernd Sieker]
-- Unix: added `fbdev` DGA support and SPARC assembly optimizations to UAE core [Gwenole Beauchesne]
+- Unix: added `fbdev` DGA support and SPARC assembly optimizations to UAE core [Gwenolé Beauchesne]
 
 ### Changed
 - `sony.cpp`, `disk.cpp` and `cdrom.cpp`: disk insertions are now checked for by an interrupt routine

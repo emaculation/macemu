@@ -1,6 +1,28 @@
-# ChangeLog
+# Change Log
+All notable changes to this project will be documented in this file.
 
-## V1.0 (snapshot) – [date unknown]
+The format is based on [Keep a Changelog](http://keepachangelog.com/)
+and this project adheres to [Semantic Versioning](http://semver.org/) after v1.0.
+
+## [Unreleased]
+### Added
+- Continuous Integration services
+
+### Changed
+- Documentation into Markdown format
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+
+# Pre-KeepAChangelog releases
+
+## [v1.0.0] (V1.0 snapshot) – (date unknown)
 ### Added
 - Unix: add large file support for 2+ GB hard disk images
 - Unix: implemented `ignoresegv` feature on Linux/x86, Linux/ppc, Darwin/ppc
@@ -34,7 +56,7 @@
 - Unix: fix crash when exitting the GUI early
 - Unix: fix fullscreen DGA mode with the VidMode extension
 
-## V1.0 (snapshot) - 2002-01-15
+## V1.0 snapshot) - 2002-01-15
 ### Added
 - added support for on-the-fly video resolution and depth switching, and gamma tables
 - added support for platform-independant mutexes, used by adb.cpp for thread-safe mouse handling
@@ -496,3 +518,6 @@
 ## V0.2 (alpha) - 1999-01-23
 ### Added
 - first alpha release
+
+[Unreleased] https://github.com/emaculation/BasiliskII/compare/v1.0...HEAD
+[v1.0.0] https://github.com/emaculation/BasiliskII/compare/v0.0.0...v1.0.0

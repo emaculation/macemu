@@ -23,7 +23,7 @@
 - Emulator snapshot - save the current emulator state (memory + registers) to a file for fast startup next time.
 - Multiple emulators. The window stuff is mostly there, but the uae_cpu code has lots of globals, and is not re-entrant
 - Real addressing mode for the emulator. Mike Sliczniak had done most of the work, but with real addressing the emulator just crashes for me.
-- Improve Objective-C object allocation (e.g. http://www.mulle-kybernetik.com/artikel/Optimisation/opti-5.html).
+- Improve Objective-C object allocation (e.g. http://www.mulle-kybernetik.com/artikel/Optimisation/opti-5.html) – **Caveat:** On 2019-03-03 the link is broken. RK
 - Use `automake` instead of the current `1_prepare_files.sh`?
 - Add JIT options to preferences?
 - Use internal windows to display Help doco?

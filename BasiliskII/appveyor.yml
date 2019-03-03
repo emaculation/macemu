@@ -16,3 +16,6 @@ before_test:
 test_script:
   # https://help.appveyor.com/discussions/problems/5170-progresspreference-not-works-always-shown-preparing-modules-for-first-use-in-stderr
   - ps: $ProgressPreference = "SilentlyContinue"
+  - cd src/Windows
+  - sh ../Unix/autogen.sh
+  - make

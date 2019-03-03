@@ -56,7 +56,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/) after v1.
 - Unix: fix crash when exitting the GUI early
 - Unix: fix fullscreen DGA mode with the VidMode extension
 
-## V1.0 snapshot) - 2002-01-15
+## V1.0 (snapshot) - 2002-01-15
 ### Added
 - added support for on-the-fly video resolution and depth switching, and gamma tables
 - added support for platform-independant mutexes, used by adb.cpp for thread-safe mouse handling

@@ -519,5 +519,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/) after v1.0
 ### Added
 - first alpha release
 
-[Unreleased] https://github.com/emaculation/BasiliskII/compare/v1.0...HEAD
-[v1.0.0] https://github.com/emaculation/BasiliskII/compare/v0.0.0...v1.0.0
+[Unreleased]: https://github.com/emaculation/BasiliskII/compare/v1.0...HEAD
+[v1.0.0]: https://github.com/emaculation/BasiliskII/compare/v0.0.0...v1.0.0

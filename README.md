@@ -3,9 +3,9 @@ Platform | BasiliskII Build | SheepShaver Build
 AmigaOS  | [Deprecate 💀](https://github.com/emaculation/macemu/issues/81) | [Deprecate 💀](https://github.com/emaculation/macemu/issues/81)
 BeOS     | [Deprecate 💀](https://github.com/emaculation/macemu/issues/82) | [Deprecate 💀](https://github.com/emaculation/macemu/issues/82)
 FreeBSD  | [Costs 💰](https://cirrus-ci.org/pricing/) | [Costs 💰](https://cirrus-ci.org/pricing/)
-Linux    | [![Linux Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=linux&label=build&branch=master)](https://travis-ci.org/emaculation/macemu) | Soon
-OSX      | [![OSX Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=osx&label=build&branch=master)](https://travis-ci.org/emaculation/macemu) [Null ⚠️](https://github.com/emaculation/macemu/issues/84) | Soon
-Windows  | [![Windows Build status](https://ci.appveyor.com/api/projects/status/k47o17u31v1xh175/branch/master?svg=true)](https://ci.appveyor.com/project/ianfixes/macemu) | Soon
+Linux    | [![Linux Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=linux-basiliskii&label=build&branch=master)](https://travis-ci.org/emaculation/macemu) | [![Linux Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=linux-sheepshaver&label=build&branch=master)](https://travis-ci.org/emaculation/macemu)
+OSX      | [![OSX Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=osx-basiliskii&label=build&branch=master)](https://travis-ci.org/emaculation/macemu) | [![OSX Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=osx-sheepshaver&label=build&branch=master)](https://travis-ci.org/emaculation/macemu)
+Windows  | [![Windows Build status](https://ci.appveyor.com/api/projects/status/k47o17u31v1xh175/branch/master?svg=true)](https://ci.appveyor.com/project/ianfixes/macemu) | [![Windows Build status](https://ci.appveyor.com/api/projects/status/k47o17u31v1xh175/branch/master?svg=true)](https://ci.appveyor.com/project/ianfixes/macemu)
 
 
 ### Supported Builds
@@ -44,7 +44,7 @@ $ make
 ```
 #### SheepShaver
 ##### macOS
-1. Open SheepShaver/src/MacOSX/SheepShaver_Xcode8.xcodeproj
+1. Open SheepShaver/src/MacOSX/SheepShaver.xcodeproj
 1. Set Build Configuration to Release
 1. Build
 

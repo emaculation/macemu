@@ -1,12 +1,24 @@
 language: cpp
 
+addons:
+  homebrew:
+    packages:
+    - sdl
+
+# Do not build branches of the form "pr/*". By prefixing pull requests coming
+# from branches inside the repository with pr/, this avoids building both the
+# branch push _and_ the pull request.
+# Based on https://github.com/boostorg/hana/blob/master/.travis.yml
+branches:
+  except: /pr\/.*/
+
 matrix:
   include:
     - os: linux
       dist: trusty
       sudo: required
       compiler: gcc
-      env: BADGE=linux
+      env: BADGE=linux-basiliskii
       addons:
         apt:
           packages:
@@ -16,8 +28,42 @@ matrix:
         - cd BasiliskII/src/Unix
         - NO_CONFIGURE=1 ./autogen.sh
         - ./configure --enable-sdl-video --enable-sdl-audio --disable-vosf --disable-jit-compiler --with-x --with-gtk --with-mon
-        - make -j 4
+        - make
     - os: osx
-      env: BADGE=osx
+      env: BADGE=osx-basiliskii
       script:
-        - true
+        - gem install xcpretty-travis-formatter
+        - wget http://www.libsdl.org/release/SDL2-2.0.9.dmg
+        - sudo hdiutil attach SDL2-2.0.9.dmg
+        - sudo cp -r /Volumes/SDL2/SDL2.framework /Library/Frameworks/
+        - cd BasiliskII/src/MacOSX
+        - xcodebuild -scheme BasiliskII -configuration Release build | xcpretty -f `xcpretty-travis-formatter` | grep -v -e '^[[:space:]]*$' | grep -v '^    ' && test ${PIPESTATUS[0]} -eq 0
+    - os: linux
+      dist: trusty
+      sudo: required
+      compiler: gcc
+      env: BADGE=linux-sheepshaver
+      addons:
+        apt:
+          packages:
+            - libsdl1.2-dev
+            - libgtk2.0-dev
+      script:
+        - cd SheepShaver
+        - make links
+        - cd src/Unix
+        - NO_CONFIGURE=1 ./autogen.sh
+        - ./configure --enable-sdl-video --enable-sdl-audio --disable-vosf --disable-jit-compiler --with-x --with-gtk --with-mon
+        - make
+    - os: osx
+      env: BADGE=osx-sheepshaver
+      script:
+        - gem install xcpretty-travis-formatter
+        - wget http://www.libsdl.org/release/SDL2-2.0.9.dmg
+        - sudo hdiutil attach SDL2-2.0.9.dmg
+        - sudo cp -r /Volumes/SDL2/SDL2.framework /Library/Frameworks/
+        - cd SheepShaver
+        - make links
+        - cd src/MacOSX
+        - xcodebuild -scheme kpx_cpu -configuration Release build | xcpretty -f `xcpretty-travis-formatter` | grep -v -e '^[[:space:]]*$' | grep -v '^    ' && test ${PIPESTATUS[0]} -eq 0
+        - xcodebuild -scheme SheepShaver -configuration Release build | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}

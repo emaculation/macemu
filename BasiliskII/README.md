@@ -2,15 +2,6 @@
 
 A 68k Macintosh emulator
 
-Platform | CI Status |
----------|:----------------
-AmigaOS  | [Deprecate 💀](https://github.com/emaculation/BasiliskII/issues/81)
-BeOS     | [Deprecate 💀](https://github.com/emaculation/BasiliskII/issues/82)
-FreeBSD  | [Costs 💰](https://cirrus-ci.org/pricing/)
-Linux    | [![Linux Build Status](http://badges.herokuapp.com/travis/emaculation/BasiliskII?env=BADGE=linux&label=build&branch=master)](https://travis-ci.org/emaculation/BasiliskII)
-OSX      | [![OSX Build Status](http://badges.herokuapp.com/travis/emaculation/BasiliskII?env=BADGE=osx&label=build&branch=master)](https://travis-ci.org/emaculation/BasiliskII) [Null ⚠️](https://github.com/emaculation/BasiliskII/issues/84)
-Windows  | [![Windows Build status](https://ci.appveyor.com/api/projects/status/b1h82askjdqev1on/branch/master?svg=true)](https://ci.appveyor.com/project/ianfixes/basiliskii)
-
 ## License
 
 Basilisk II is available under the terms of the GNU General Public License. See the file "LICENSE" that is included in the distribution for details.
@@ -579,7 +570,7 @@ You can use the serial ports in Basilisk II to connect to the Internet with a mo
 
 ## Technical Documentation
 
-Please see the included file "TECH" for a technical overview of the emulator.
+Please see the included file "TECH.md" for a technical overview of the emulator.
 
 ## Acknowledgements
 
@@ -606,57 +597,3 @@ Special thanks to:
 - All ShapeShifter and SheepShaver users and beta testers
 - Apple Computer Inc., who made writing a Macintosh emulator a child's play
 
-## Bug reports
-
-You found a bug? Well, use the source, fix it and send the fix to
-Christian.Bauer@uni-mainz.de>
-for inclusion in the next release of Basilisk II.
-
-If you don't have a fix, you should post a bug report using the Source Forge bug tracker, supplying as much information as possible (operating system and versions of Basilisk II and MacOS being used, relevant hardware information, the exact steps to reproduce the bug, etc.):
-http://sourceforge.net/tracker/?group_id=2123&atid=102123
-
-I also strongly suggest reading this before posting a bug report:
-http://www.chiark.greenend.org.uk/~sgtatham/bugs.html
-
-## Author
-
-You can contact me at <Christian.Bauer@uni-mainz.de>, but please don't do so unless absolutely necessary. I'm maintaining Basilisk II in my spare time and am not able to provide technical support for everyone. If you have questions, consider posting them to one of the support forums mentioned below.
-
-You are encouraged to contact me personally when
-- you have bug fixes or small enhancements for the code
-- you want to port Basilisk II to another platform
-- you want to discuss technical issues
-- you intend to make major changes to the source; you might be working on something that I have already done, or I may have different ideas about the Right Way to do it
-
-There is no point in sending me questions about
-- ROM files and how/where to get them
-- versions of Basilisk II that run on operating systems other than Unix, BeOS and AmigaOS. If you are using any other operating system, there's no point in asking me how to to X or why Y doesn't work because I won't know either. Instead, you should look in the "Acknowledgements" section of this manual to find the person responsible. For example, if your question is specific to the Windows operating system, ask Lauri Pesonen. I don't have Windows and can't answer your questions and I'm too lazy to forward mail to Lauri myself. In any case, it would probably be better to post your questions to a public forum as it will get a much wider audience there.
-
-## Support
-
-The official Basilisk II home page is at
-http://www.uni-mainz.de/~bauec002/B2Main.html
-
-The Basilisk II project page on SourceForge is at
-http://sourceforge.net/projects/basilisk/
-
-If you have problems, you may want to visit the Basilisk II forums:
-http://sourceforge.net/forum/?group_id=2123
-
-There is also a mailing list for Basilisk II users:
-http://lists.sourceforge.net/lists/listinfo/basilisk-user
-
-And another mailing list for Basilisk II developers:
-http://lists.sourceforge.net/lists/listinfo/basilisk-devel
-
-Some general advice about asking technical support questions can be found at
-http://www.catb.org/~esr/faqs/smart-questions.html
-
-Keeping this in mind will greatly increase your chances of getting a useful answer.
-
-## History
-
-Please consult the file "ChangeLog" for the release history.
-
-Christian Bauer
-Christian.Bauer@uni-mainz.de

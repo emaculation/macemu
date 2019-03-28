@@ -6,6 +6,11 @@ environment:
   matrix:
     - CYG_ARCH: x86_64
       CYG_ROOT: C:/cygwin64
+      MACEMU_PRJOECT: BasiliskII
+    - CYG_ARCH: x86_64
+      CYG_ROOT: C:/cygwin64
+      MACEMU_PRJOECT: SheepShaver
+
 
 build: off
 
@@ -16,3 +21,8 @@ before_test:
 test_script:
   # https://help.appveyor.com/discussions/problems/5170-progresspreference-not-works-always-shown-preparing-modules-for-first-use-in-stderr
   - ps: $ProgressPreference = "SilentlyContinue"
+  - cd $MACEMU_PROJECT
+  - ($env:MACEMU_PROJECT -eq "SheepShaver") && make links
+  - cd src/Windows
+  - sh ../Unix/autogen.sh
+  - make

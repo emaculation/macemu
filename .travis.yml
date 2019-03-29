@@ -37,7 +37,7 @@ matrix:
         - sudo hdiutil attach SDL2-2.0.9.dmg
         - sudo cp -r /Volumes/SDL2/SDL2.framework /Library/Frameworks/
         - cd BasiliskII/src/MacOSX
-        - xcodebuild -scheme BasiliskII -configuration Release build | xcpretty -f `xcpretty-travis-formatter` | grep -v -e '^[[:space:]]*$' | grep -v '^    ' && test ${PIPESTATUS[0]} -eq 0
+        - xcodebuild -scheme BasiliskII -configuration Release build CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -f `xcpretty-travis-formatter` | grep -v -e '^[[:space:]]*$' | grep -v '^    ' && test ${PIPESTATUS[0]} -eq 0
     - os: linux
       dist: trusty
       sudo: required
@@ -65,5 +65,5 @@ matrix:
         - cd SheepShaver
         - make links
         - cd src/MacOSX
-        - xcodebuild -scheme kpx_cpu -configuration Release build | xcpretty -f `xcpretty-travis-formatter` | grep -v -e '^[[:space:]]*$' | grep -v '^    ' && test ${PIPESTATUS[0]} -eq 0
-        - xcodebuild -scheme SheepShaver -configuration Release build | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
+        - xcodebuild -scheme kpx_cpu -configuration Release build CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -f `xcpretty-travis-formatter` | grep -v -e '^[[:space:]]*$' | grep -v '^    ' && test ${PIPESTATUS[0]} -eq 0
+        - xcodebuild -scheme SheepShaver -configuration Release build CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}

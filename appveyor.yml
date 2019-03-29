@@ -1,15 +1,15 @@
 install:
   - set PATH=C:\cygwin\bin;C:\cygwin64\bin;%PATH%
-  - '%CYG_ROOT%\setup-%CYG_ARCH%.exe -qnNdO -R %CYG_ROOT% -s http://cygwin.mirror.constant.com -l %CYG_ROOT%/var/cache/setup -P autoconf -P automake -P bison -P libgmp-devel -P gcc-core -P gcc-g++ -P mingw-runtime -P mingw-binutils -P mingw-gcc-core -P mingw-gcc-g++ -P mingw-pthreads -P mingw-w32api -P libtool -P make -P gettext-devel -P gettext -P intltool -P libiconv -P pkg-config -P git -P wget -P curl'
+  - '%CYG_ROOT%\setup-%CYG_ARCH%.exe -qnNdO -R %CYG_ROOT% -s http://cygwin.mirror.constant.com -l %CYG_ROOT%/var/cache/setup -P autoconf -P automake -P bison -P libgmp-devel -P gcc-core -P gcc-g++ -P mingw-runtime -P mingw-binutils -P mingw-gcc-core -P mingw-gcc-g++ -P mingw-pthreads -P mingw-w32api -P libtool -P make -P gettext-devel -P gettext -P intltool -P libiconv -P pkg-config -P git -P wget -P curl -P libgtk2.0-devel -P libSDL2-devel'
 
 environment:
   matrix:
     - CYG_ARCH: x86_64
       CYG_ROOT: C:/cygwin64
-      MACEMU_PRJOECT: BasiliskII
+      MACEMU_PROJECT: BasiliskII
     - CYG_ARCH: x86_64
       CYG_ROOT: C:/cygwin64
-      MACEMU_PRJOECT: SheepShaver
+      MACEMU_PROJECT: SheepShaver
 
 
 build: off
@@ -21,8 +21,9 @@ before_test:
 test_script:
   # https://help.appveyor.com/discussions/problems/5170-progresspreference-not-works-always-shown-preparing-modules-for-first-use-in-stderr
   - ps: $ProgressPreference = "SilentlyContinue"
-  - cd $MACEMU_PROJECT
-  - ($env:MACEMU_PROJECT -eq "SheepShaver") && make links
+  - 'echo %MACEMU_PROJECT%'
+  - 'cd %MACEMU_PROJECT%'
+  - ps: ($env:MACEMU_PROJECT -eq "SheepShaver") -and $(make links)
   - cd src/Windows
   - sh ../Unix/autogen.sh
   - make

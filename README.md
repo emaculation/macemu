@@ -1,29 +1,36 @@
-Platform | BasiliskII Build | SheepShaver Build
----------|:-----------------|:------------------
-AmigaOS  | [Deprecate 💀](https://github.com/emaculation/macemu/issues/81) | [Deprecate 💀](https://github.com/emaculation/macemu/issues/81)
-BeOS     | [Deprecate 💀](https://github.com/emaculation/macemu/issues/82) | [Deprecate 💀](https://github.com/emaculation/macemu/issues/82)
-FreeBSD  | [Costs 💰](https://cirrus-ci.org/pricing/) | [Costs 💰](https://cirrus-ci.org/pricing/)
-Linux    | [![Linux Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=linux-basiliskii&label=build&branch=master)](https://travis-ci.org/emaculation/macemu) | [![Linux Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=linux-sheepshaver&label=build&branch=master)](https://travis-ci.org/emaculation/macemu)
-OSX      | [![OSX Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=osx-basiliskii&label=build&branch=master)](https://travis-ci.org/emaculation/macemu) | [![OSX Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=osx-sheepshaver&label=build&branch=master)](https://travis-ci.org/emaculation/macemu)
-Windows  | [![Windows Build status](https://ci.appveyor.com/api/projects/status/k47o17u31v1xh175/branch/master?svg=true)](https://ci.appveyor.com/project/ianfixes/macemu) | [![Windows Build status](https://ci.appveyor.com/api/projects/status/k47o17u31v1xh175/branch/master?svg=true)](https://ci.appveyor.com/project/ianfixes/macemu)
+# Mac Emulation
+
+This repository contains the [BasiliskII](BasiliskII/) and [SheepShaver](SheepShaver/) projects.  It is an attempt to centralize the individual development efforts that have gone on in the absence of the original [cebix/macemu](https://github.com/cebix/macemu) repository owner.
+
+The [cxmon](https://github.com/emaculation/cxmon) project has been split from this repository.
+
+Target      | Options      | Windows MinGW | OSX  | Linux
+------------|:-------------|:--------------|:-----|:------
+BasiliskII  |32-bit, no JIT| - | - | -
+BasiliskII  |32-bit, JIT   |[![Windows Build status](https://ci.appveyor.com/api/projects/status/k47o17u31v1xh175/branch/master?svg=true)](https://ci.appveyor.com/project/ianfixes/macemu) | - | [![Linux Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=linux-basiliskii&label=build&branch=master)](https://travis-ci.org/emaculation/macemu)
+BasiliskII  |64-bit, no JIT| - | [![OSX Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=osx-basiliskii&label=build&branch=master)](https://travis-ci.org/emaculation/macemu) | -
+BasiliskII  |64-bit, JIT   | - | - | -
+SheepShaver |32-bit, no JIT|[![Windows Build status](https://ci.appveyor.com/api/projects/status/k47o17u31v1xh175/branch/master?svg=true)](https://ci.appveyor.com/project/ianfixes/macemu) | - | -
+SheepShaver |32-bit, JIT   | - | - | [![Linux Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=linux-sheepshaver&label=build&branch=master)](https://travis-ci.org/emaculation/macemu)
+SheepShaver |64-bit, no JIT| - | - | -
+SheepShaver |64-bit, JIT   | - | [![OSX Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=osx-sheepshaver&label=build&branch=master)](https://travis-ci.org/emaculation/macemu) | -
 
 
-### Supported Builds
+Deprecated platforms:
 
-#### BasiliskII
-```
-macOS 64-bit ---
-Linux 32-bit JIT
-MinGW 32-bit JIT
-```
-#### SheepShaver
-```
-macOS 64-bit JIT
-Linux 32-bit JIT
-MinGW 32-bit ---
-```
+OS       | CI Status
+---------|:---------
+FreeBSD  | [Costs Money 💰](https://cirrus-ci.org/pricing/)
+AmigaOS  | [No known service](https://github.com/emaculation/macemu/issues/81)
+BeOS     | [No known service](https://github.com/emaculation/macemu/issues/82)
+
+
 ### How To Build
-These builds need to be installed SDL2 framework/library.
+
+These builds need the SDL2 framework/library to be installed.
+
+`.travis.yml` and `appveyor.yml` contain the build scripts for CI.  More generally, here are the steps:
+
 #### BasiliskII
 ##### macOS
 1. Open BasiliskII/src/MacOSX/BasiliskII.xcodeproj

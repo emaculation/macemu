@@ -77,7 +77,7 @@ void set_menu_bar_visible_osx(bool visible)
 void set_current_directory()
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	chdir([[[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent] UTF8String]);
+	chdir([[[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent] fileSystemRepresentation]);
 	[pool release];
 }
 

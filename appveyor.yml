@@ -32,7 +32,7 @@ install:
     -P libiconv
     -P libncurses-devel
     -P libreadline-devel
-    -P libSDL2-devel
+    # -P libSDL2-devel
     -P libtool
     -P make
     -P mingw-binutils
@@ -43,20 +43,20 @@ install:
     -P mingw-w32api
     -P pkg-config
     -P wget'
-  # - IF NOT EXIST %APPVEYOR_BUILD_FOLDER%\SDL2-%SDL2_VERSION%.zip
-  #   appveyor DownloadFile http://libsdl.org/release/SDL2-%SDL2_VERSION%.zip
-  # - unzip -qq -o SDL2-%SDL2_VERSION%.zip
-  # - ren SDL2-%SDL2_VERSION% my_SDL2
+  - IF NOT EXIST %APPVEYOR_BUILD_FOLDER%\SDL2-%SDL2_VERSION%.zip
+    appveyor DownloadFile http://libsdl.org/release/SDL2-%SDL2_VERSION%.zip
+  - unzip -qq -o SDL2-%SDL2_VERSION%.zip
+  - ren SDL2-%SDL2_VERSION% my_SDL2
 
   # Build and install SDL2
-  # - '%MINGW_SHELL% -c "
-  #   export PATH=.:/usr/local/bin:/mingw/bin:/bin:$PATH &&
-  #   cd my_SDL2 &&
-  #   ./autogen.sh &&
-  #   ./configure --disable-shared &&
-  #   make &&
-  #   make install
-  #   "'
+  - '%MINGW_SHELL% -c "
+    export PATH=.:/usr/local/bin:/mingw/bin:/bin:$PATH &&
+    cd my_SDL2 &&
+    ./autogen.sh &&
+    ./configure --disable-shared &&
+    make &&
+    make install
+    "'
 
 test_script:
   - ps: $ProgressPreference = "SilentlyContinue"

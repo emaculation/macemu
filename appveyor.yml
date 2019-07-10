@@ -28,6 +28,7 @@ install:
     -P git
     -P intltool
     -P libgmp-devel
+    -P libgtk2.0-devel
     -P libiconv
     -P libncurses-devel
     -P libreadline-devel

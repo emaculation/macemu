@@ -6,9 +6,11 @@ environment:
   CYG_ROOT: C:/cygwin64
   matrix:
     - MACEMU_PROJECT: BasiliskII
-      MACEMU_OS: Unix
+      MACEMU_OS: Windows
     - MACEMU_PROJECT: SheepShaver
       MACEMU_OS: Windows
+
+build: 'off'
 
 install:
   - set PATH=C:\cygwin64\bin;%PATH%
@@ -18,6 +20,7 @@ install:
     -P automake
     -P bison
     -P curl
+    -P coreutils
     -P gcc-core
     -P gcc-g++
     -P gettext
@@ -43,7 +46,7 @@ install:
   - unzip -o SDL2-%SDL2_VERSION%.zip
   - ren SDL2-%SDL2_VERSION% my_SDL2
 
-build_script:
+  # Build and install SDL2
   - '%MINGW_SHELL% -c "
     export PATH=.:/usr/local/bin:/mingw/bin:/bin:$PATH &&
     cd my_SDL2 &&
@@ -61,7 +64,9 @@ test_script:
   - '%MINGW_SHELL% -c "
     cd src/$MACEMU_OS;
     export PATH=.:/usr/local/bin:/mingw/bin:/bin:$PATH;
-    NO_CONFIGURE=1 ./autogen.sh &&
+    pwd;
+    ls ;
+    autoconf &&
     ./configure &&
     make
     "'

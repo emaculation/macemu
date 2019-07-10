@@ -66,7 +66,7 @@ test_script:
   - '%MINGW_SHELL% -c "
     cd src/$MACEMU_OS;
     export PATH=.:/usr/local/bin:/mingw/bin:/bin:$PATH;
-    ./autogen.sh &&
+    NO_CONFIGURE=1 ./autogen.sh &&
     ./configure &&
     make
     "'

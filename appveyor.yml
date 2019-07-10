@@ -43,7 +43,7 @@ install:
     -P wget'
   - IF NOT EXIST %APPVEYOR_BUILD_FOLDER%\SDL2-%SDL2_VERSION%.zip
     appveyor DownloadFile http://libsdl.org/release/SDL2-%SDL2_VERSION%.zip
-  - unzip -o SDL2-%SDL2_VERSION%.zip
+  - unzip -qq -o SDL2-%SDL2_VERSION%.zip
   - ren SDL2-%SDL2_VERSION% my_SDL2
 
   # Build and install SDL2

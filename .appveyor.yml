@@ -14,7 +14,7 @@ environment:
 build: off
 
 install:
-  - set PATH=C:\cygwin\bin;C:\cygwin64\bin;%PATH%
+  - set PATH=C:\cygwin64\bin;%PATH%
   - '%CYG_ROOT%\setup-%CYG_ARCH%.exe -qnNdO -R %CYG_ROOT%
     -l %CYG_ROOT%/var/cache/setup
     -P autoconf

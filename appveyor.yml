@@ -62,9 +62,9 @@ test_script:
   - cd %MACEMU_PROJECT%/src/%MACEMU_OS%
   - ps: ($env:MACEMU_PROJECT -eq "SheepShaver") -and $(bash -c "make links")
   - bash -c "
-    echo "==> Running ../Unix/autogen.sh" ; NO_CONFIGURE=1 ../Unix/autogen.sh &&
-    echo "==> Running ./configure"        ; ./configure &&
-    echo "==> Running make"               ; make
+    echo '==> Running ../Unix/autogen.sh' ; NO_CONFIGURE=1 ../Unix/autogen.sh &&
+    echo '==> Running ./configure'        ; ./configure &&
+    echo '==> Running make'               ; make
     "
 
 # on_finish:

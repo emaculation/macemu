@@ -31,7 +31,7 @@ install:
     -P libiconv
     -P libncurses-devel
     -P libreadline-devel
-    # -P libSDL2-devel
+    -P libSDL2-devel
     -P libtool
     -P make
     -P mingw-binutils
@@ -42,19 +42,19 @@ install:
     -P mingw-w32api
     -P pkg-config
     -P wget'
-  - IF NOT EXIST %APPVEYOR_BUILD_FOLDER%\SDL2-%SDL2_VERSION%.zip
-    appveyor DownloadFile http://libsdl.org/release/SDL2-%SDL2_VERSION%.zip
-  - unzip -qq -o SDL2-%SDL2_VERSION%.zip
-  - ren SDL2-%SDL2_VERSION% my_SDL2
+  # - IF NOT EXIST %APPVEYOR_BUILD_FOLDER%\SDL2-%SDL2_VERSION%.zip
+  #   appveyor DownloadFile http://libsdl.org/release/SDL2-%SDL2_VERSION%.zip
+  # - unzip -qq -o SDL2-%SDL2_VERSION%.zip
+  # - ren SDL2-%SDL2_VERSION% my_SDL2
 
   # Build and install SDL2
-  - bash -c "
-    cd my_SDL2 &&
-    ./autogen.sh &&
-    ./configure --disable-shared &&
-    make &&
-    make install
-    "
+  # - bash -c "
+  #   cd my_SDL2 &&
+  #   ./autogen.sh &&
+  #   ./configure --disable-shared &&
+  #   make &&
+  #   make install
+    # "
 
 test_script:
   - ps: $ProgressPreference = "SilentlyContinue"
@@ -62,10 +62,9 @@ test_script:
   - cd %MACEMU_PROJECT%/src/%MACEMU_OS%
   - ps: ($env:MACEMU_PROJECT -eq "SheepShaver") -and $(bash -c "make links")
   - bash -c "
-    NO_CONFIGURE=1 ../Unix/autogen.sh &&
-    autoreconf -i &&
-    ./configure &&
-    make
+    echo "==> Running ../Unix/autogen.sh" ; NO_CONFIGURE=1 ../Unix/autogen.sh &&
+    echo "==> Running ./configure"        ; ./configure &&
+    echo "==> Running make"               ; make
     "
 
 # on_finish:

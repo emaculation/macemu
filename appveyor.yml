@@ -1,29 +1,72 @@
-install:
-  - set PATH=C:\cygwin\bin;C:\cygwin64\bin;%PATH%
-  - '%CYG_ROOT%\setup-%CYG_ARCH%.exe -qnNdO -R %CYG_ROOT% -s http://cygwin.mirror.constant.com -l %CYG_ROOT%/var/cache/setup -P autoconf -P automake -P bison -P libgmp-devel -P gcc-core -P gcc-g++ -P mingw-runtime -P mingw-binutils -P mingw-gcc-core -P mingw-gcc-g++ -P mingw-pthreads -P mingw-w32api -P libtool -P make -P gettext-devel -P gettext -P intltool -P libiconv -P pkg-config -P git -P wget -P curl -P libgtk2.0-devel -P libSDL2-devel'
-
+---
 environment:
+  SDL2_VERSION: 2.0.9
+  CYG_ARCH: x86_64
+  CYG_ROOT: C:/cygwin64
   matrix:
-    - CYG_ARCH: x86_64
-      CYG_ROOT: C:/cygwin64
-      MACEMU_PROJECT: BasiliskII
-    - CYG_ARCH: x86_64
-      CYG_ROOT: C:/cygwin64
-      MACEMU_PROJECT: SheepShaver
+    - MACEMU_PROJECT: BasiliskII
+      MACEMU_OS: Windows
+    - MACEMU_PROJECT: SheepShaver
+      MACEMU_OS: Windows
 
+build: 'off'
 
-build: off
+install:
+  - set PATH=C:\cygwin64\bin;%PATH%
+  - '%CYG_ROOT%\setup-%CYG_ARCH%.exe -qnNdO -R %CYG_ROOT%
+    -l %CYG_ROOT%/var/cache/setup
+    -P autoconf
+    -P automake
+    -P bison
+    -P curl
+    -P coreutils
+    -P gcc-core
+    -P gcc-g++
+    -P gettext
+    -P gettext-devel
+    -P git
+    -P intltool
+    -P libgmp-devel
+    -P libgtk2.0-devel
+    -P libiconv
+    -P libncurses-devel
+    -P libreadline-devel
+    -P libSDL2-devel
+    -P libtool
+    -P make
+    -P mingw-binutils
+    -P mingw-gcc-core
+    -P mingw-gcc-g++
+    -P mingw-pthreads
+    -P mingw-runtime
+    -P mingw-w32api
+    -P pkg-config
+    -P wget'
+  # - IF NOT EXIST %APPVEYOR_BUILD_FOLDER%\SDL2-%SDL2_VERSION%.zip
+  #   appveyor DownloadFile http://libsdl.org/release/SDL2-%SDL2_VERSION%.zip
+  # - unzip -qq -o SDL2-%SDL2_VERSION%.zip
+  # - ren SDL2-%SDL2_VERSION% my_SDL2
 
-before_test:
-  - gcc -v
-  - g++ -v
+  # Build and install SDL2
+  # - bash -c "
+  #   cd my_SDL2 &&
+  #   ./autogen.sh &&
+  #   ./configure --disable-shared &&
+  #   make &&
+  #   make install
+  # "
 
 test_script:
-  # https://help.appveyor.com/discussions/problems/5170-progresspreference-not-works-always-shown-preparing-modules-for-first-use-in-stderr
   - ps: $ProgressPreference = "SilentlyContinue"
-  - 'echo %MACEMU_PROJECT%'
-  - 'cd %MACEMU_PROJECT%'
-  - ps: ($env:MACEMU_PROJECT -eq "SheepShaver") -and $(make links)
-  - cd src/Windows
-  - sh ../Unix/autogen.sh
-  - make
+  - echo %MACEMU_PROJECT%
+  - cd %MACEMU_PROJECT%
+  - ps: ($env:MACEMU_PROJECT -eq "SheepShaver") -and $(bash -c "make links")
+  - cd src/%MACEMU_OS%
+  - bash -c "
+    echo '==> Running ../Unix/autogen.sh' ; NO_CONFIGURE=1 ../Unix/autogen.sh &&
+    echo '==> Running ./configure'        ; ./configure &&
+    echo '==> Running make'               ; make
+    "
+
+# on_finish:
+#   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

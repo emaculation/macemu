@@ -1,7 +1,6 @@
 ---
 environment:
   SDL2_VERSION: 2.0.9
-  MINGW_SHELL: C:\MinGW\msys\1.0\bin\bash
   CYG_ARCH: x86_64
   CYG_ROOT: C:/cygwin64
   matrix:
@@ -49,27 +48,25 @@ install:
   - ren SDL2-%SDL2_VERSION% my_SDL2
 
   # Build and install SDL2
-  - '%MINGW_SHELL% -c "
-    export PATH=.:/usr/local/bin:/mingw/bin:/bin:$PATH &&
+  - bash -c "
     cd my_SDL2 &&
     ./autogen.sh &&
     ./configure --disable-shared &&
     make &&
     make install
-    "'
+    "
 
 test_script:
   - ps: $ProgressPreference = "SilentlyContinue"
   - echo %MACEMU_PROJECT%
-  - cd %MACEMU_PROJECT%
-  - ps: ($env:MACEMU_PROJECT -eq "SheepShaver") -and $(make links)
-  - '%MINGW_SHELL% -c "
-    cd src/$MACEMU_OS;
-    export PATH=.:/usr/local/bin:/mingw/bin:/bin:$PATH;
+  - cd %MACEMU_PROJECT%/src/%MACEMU_OS%
+  - ps: ($env:MACEMU_PROJECT -eq "SheepShaver") -and $(bash -c "make links")
+  - bash -c "
     NO_CONFIGURE=1 ../Unix/autogen.sh &&
+    autoreconf -i &&
     ./configure &&
     make
-    "'
+    "
 
 # on_finish:
 #   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))

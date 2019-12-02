@@ -37,7 +37,6 @@
 		7539E1381F23B25A006B2DF2 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 7539E00A1F23B25A006B2DF2 /* Credits.html */; };
 		7539E13B1F23B25A006B2DF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7539E00F1F23B25A006B2DF2 /* InfoPlist.strings */; };
 		7539E13E1F23B25A006B2DF2 /* HowTo.html in Resources */ = {isa = PBXBuildFile; fileRef = 7539E0141F23B25A006B2DF2 /* HowTo.html */; };
-		7539E14B1F23B25A006B2DF2 /* ToDo.html in Resources */ = {isa = PBXBuildFile; fileRef = 7539E02B1F23B25A006B2DF2 /* ToDo.html */; };
 		7539E14D1F23B25A006B2DF2 /* Versions.html in Resources */ = {isa = PBXBuildFile; fileRef = 7539E02E1F23B25A006B2DF2 /* Versions.html */; };
 		7539E16C1F23B25A006B2DF2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7539E0651F23B25A006B2DF2 /* main.cpp */; };
 		7539E16D1F23B25A006B2DF2 /* pict.c in Sources */ = {isa = PBXBuildFile; fileRef = 7539E0681F23B25A006B2DF2 /* pict.c */; };
@@ -259,7 +258,6 @@
 		7539E00A1F23B25A006B2DF2 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		7539E0101F23B25A006B2DF2 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7539E0141F23B25A006B2DF2 /* HowTo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HowTo.html; sourceTree = "<group>"; };
-		7539E02B1F23B25A006B2DF2 /* ToDo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ToDo.html; sourceTree = "<group>"; };
 		7539E02E1F23B25A006B2DF2 /* Versions.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Versions.html; sourceTree = "<group>"; };
 		7539E0651F23B25A006B2DF2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../main.cpp; sourceTree = "<group>"; };
 		7539E0681F23B25A006B2DF2 /* pict.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = pict.c; path = ../pict.c; sourceTree = "<group>"; };
@@ -615,7 +613,6 @@
 				7539E00F1F23B25A006B2DF2 /* InfoPlist.strings */,
 				7539E0141F23B25A006B2DF2 /* HowTo.html */,
 				7539E29C1F23C83F006B2DF2 /* sys_darwin.cpp */,
-				7539E02B1F23B25A006B2DF2 /* ToDo.html */,
 				756C1B321F252FC100620917 /* utils_macosx.h */,
 				756C1B331F252FC100620917 /* utils_macosx.mm */,
 				7539E02E1F23B25A006B2DF2 /* Versions.html */,
@@ -980,7 +977,6 @@
 				7539E2451F23B32A006B2DF2 /* gtk-osx.patch in Resources */,
 				7539E2AB1F23CDB7006B2DF2 /* Info.plist in Resources */,
 				7539E2471F23B32A006B2DF2 /* mkstandalone in Resources */,
-				7539E14B1F23B25A006B2DF2 /* ToDo.html in Resources */,
 				7539E13E1F23B25A006B2DF2 /* HowTo.html in Resources */,
 				7539E1751F23B25A006B2DF2 /* keycodes in Resources */,
 				E413D92B20D260BC00E437D8 /* COPYRIGHT in Resources */,

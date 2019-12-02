@@ -109,7 +109,7 @@ VPATH :=
 VPATH += $(addprefix :, $(subst  ,:, $(filter-out $($(subst, :, ,$(VPATH))), $(SRC_PATHS))))
 
 ## Documentation files
-OSX_DOCS = ../MacOSX/Credits.html ../MacOSX/ToDo.html ../MacOSX/HowTo.html ../MacOSX/Versions.html
+OSX_DOCS = ../MacOSX/Credits.html ../MacOSX/HowTo.html ../MacOSX/Versions.html
 
 $(APP)$(EXEEXT): $(OBJ_DIR) $(OBJS)
 	$(CXX) -o $@ $(LDFLAGS) $(OBJS) $(LIBS) $(GUI_LIBS)

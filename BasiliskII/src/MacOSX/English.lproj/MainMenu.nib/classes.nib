@@ -3,7 +3,6 @@
         {
             ACTIONS = {
                 HelpHowTo = id; 
-                HelpToDo = id; 
                 HelpVersions = id; 
                 NewEmulator = id; 
                 PauseAll = id; 

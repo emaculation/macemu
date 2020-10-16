@@ -42,7 +42,6 @@
 
 
 - (IBAction) HelpHowTo:		(id)sender;
-- (IBAction) HelpToDo:		(id)sender;
 - (IBAction) HelpVersions:	(id)sender;
 
 #ifdef ENABLE_MULTIPLE

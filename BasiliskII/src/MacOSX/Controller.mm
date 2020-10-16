@@ -281,19 +281,6 @@
 			InfoSheet(@"Cannot open HowTo.html with default app", [theEmulator window]);
 }
 
-- (IBAction) HelpToDo: (id)sender
-{
-	NSString	*path = [[NSBundle mainBundle] pathForResource: @"ToDo"
-														ofType: @"html"];
-
-	if ( ! path )
-		InfoSheet(@"Cannot find ToDo.html", [theEmulator window]);
-	else
-		if ( ! [[NSWorkspace sharedWorkspace] openFile: path
-									   withApplication: @"TextEdit"] )
-			InfoSheet(@"Cannot open ToDo.html with TextEdit", [theEmulator window]);
-}
-
 - (IBAction) HelpVersions: (id)sender
 {
 	NSString	*path = [[NSBundle mainBundle] pathForResource: @"Versions"

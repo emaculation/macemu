@@ -27,8 +27,8 @@ cache:
   - $(MSYS2_DIR)\var\cache\pacman\pkg  # downloaded MSYS2 pacman packages
 
 before_build:
-  - gcc -v
-  - g++ -v
+  - '%MSYS2_DIR%\usr\bin\env.exe MSYSTEM=%MSYS2_PLATFORM% %MSYS2_DIR%\usr\bin\bash.exe --login -c ''gcc -v'' '
+  - '%MSYS2_DIR%\usr\bin\env.exe MSYSTEM=%MSYS2_PLATFORM% %MSYS2_DIR%\usr\bin\bash.exe --login -c ''g++ -v'' '
 
 build_script:
   - if %MACEMU_PROJECT%==SheepShaver %MSYS2_DIR%\usr\bin\env.exe MSYSTEM=%MSYS2_PLATFORM% %MSYS2_DIR%\usr\bin\bash.exe --login -c 'cd /c/projects/macemu/%MACEMU_PROJECT%; make links'

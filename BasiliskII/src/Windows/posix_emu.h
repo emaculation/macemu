@@ -125,6 +125,6 @@ struct my_utimbuf
 };
 
 // Your compiler may have different "struct stat" -> edit "struct my_stat"
-#define validate_stat_struct ( sizeof(struct my_stat) == sizeof(struct stat) )
+#define validate_stat_struct ( sizeof(struct my_stat) == sizeof(struct _stat) )
 
 #define st_crtime st_ctime

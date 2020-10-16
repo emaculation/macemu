@@ -1,29 +1,41 @@
+
+# Build worker image, see https://www.appveyor.com/docs/windows-images-software/
+image: Visual Studio 2019
+
 install:
-  - set PATH=C:\cygwin\bin;C:\cygwin64\bin;%PATH%
-  - '%CYG_ROOT%\setup-%CYG_ARCH%.exe -qnNdO -R %CYG_ROOT% -s http://cygwin.mirror.constant.com -l %CYG_ROOT%/var/cache/setup -P autoconf -P automake -P bison -P libgmp-devel -P gcc-core -P gcc-g++ -P mingw-runtime -P mingw-binutils -P mingw-gcc-core -P mingw-gcc-g++ -P mingw-pthreads -P mingw-w32api -P libtool -P make -P gettext-devel -P gettext -P intltool -P libiconv -P pkg-config -P git -P wget -P curl -P libgtk2.0-devel -P libSDL2-devel'
+  # Update package index
+  - '%MSYS2_DIR%\usr\bin\env.exe %MSYS2_DIR%\usr\bin\bash --login -c ''/usr/bin/pacman -Sy --noconfirm'' '
+  # Install packages needed to build macemu
+  # After installing a package with pacman -S, check that it is actually installed with pacman -Qi 
+  # because pacman -S reports success even if the package install failed when some necessary package downloads timed out
+  - '%MSYS2_DIR%\usr\bin\env.exe %MSYS2_DIR%\usr\bin\bash --login -c ''/usr/bin/pacman -S --noconfirm mingw-w64-i686-gtk2'' '
+  - '%MSYS2_DIR%\usr\bin\env.exe %MSYS2_DIR%\usr\bin\bash --login -c ''/usr/bin/pacman -Qi mingw-w64-i686-gtk2'' '
+  - '%MSYS2_DIR%\usr\bin\env.exe %MSYS2_DIR%\usr\bin\bash --login -c ''/usr/bin/pacman -S --noconfirm mingw-w64-i686-SDL2'' '
+  - '%MSYS2_DIR%\usr\bin\env.exe %MSYS2_DIR%\usr\bin\bash --login -c ''/usr/bin/pacman -Qi mingw-w64-i686-SDL2'' '
 
 environment:
+  global:
+    MSYS2_DIR: C:\msys64
+    MSYS2_PLATFORM: MINGW32
   matrix:
-    - CYG_ARCH: x86_64
-      CYG_ROOT: C:/cygwin64
-      MACEMU_PROJECT: BasiliskII
-    - CYG_ARCH: x86_64
-      CYG_ROOT: C:/cygwin64
-      MACEMU_PROJECT: SheepShaver
+    - MACEMU_PROJECT: BasiliskII
+      CONFIGURE_OPTIONS: 
+    - MACEMU_PROJECT: SheepShaver
+      CONFIGURE_OPTIONS: 
 
+cache:
+  - $(MSYS2_DIR)\var\cache\pacman\pkg  # downloaded MSYS2 pacman packages
 
-build: off
+before_build:
+  - '%MSYS2_DIR%\usr\bin\env.exe MSYSTEM=%MSYS2_PLATFORM% %MSYS2_DIR%\usr\bin\bash.exe --login -c ''gcc -v'' '
+  - '%MSYS2_DIR%\usr\bin\env.exe MSYSTEM=%MSYS2_PLATFORM% %MSYS2_DIR%\usr\bin\bash.exe --login -c ''g++ -v'' '
 
-before_test:
-  - gcc -v
-  - g++ -v
+build_script:
+  - if %MACEMU_PROJECT%==SheepShaver %MSYS2_DIR%\usr\bin\env.exe MSYSTEM=%MSYS2_PLATFORM% %MSYS2_DIR%\usr\bin\bash.exe --login -c 'cd /c/projects/macemu/%MACEMU_PROJECT%; make links'
+  - '%MSYS2_DIR%\usr\bin\env.exe MSYSTEM=%MSYS2_PLATFORM% %MSYS2_DIR%\usr\bin\bash.exe --login -c ''cd /c/projects/macemu/%MACEMU_PROJECT%/src/Windows; ../Unix/autogen.sh %CONFIGURE_OPTIONS%'' '
+  - '%MSYS2_DIR%\usr\bin\env.exe MSYSTEM=%MSYS2_PLATFORM% %MSYS2_DIR%\usr\bin\bash.exe --login -c ''cd /c/projects/macemu/%MACEMU_PROJECT%/src/Windows; make -j2'' '
 
-test_script:
-  # https://help.appveyor.com/discussions/problems/5170-progresspreference-not-works-always-shown-preparing-modules-for-first-use-in-stderr
-  - ps: $ProgressPreference = "SilentlyContinue"
-  - 'echo %MACEMU_PROJECT%'
-  - 'cd %MACEMU_PROJECT%'
-  - ps: ($env:MACEMU_PROJECT -eq "SheepShaver") -and $(make links)
-  - cd src/Windows
-  - sh ../Unix/autogen.sh
-  - make
+artifacts:
+  - path: $(MACEMU_PROJECT)\src\Windows\config.log
+  - path: $(MACEMU_PROJECT)\src\Windows\$(MACEMU_PROJECT).exe
+  - path: $(MACEMU_PROJECT)\src\Windows\$(MACEMU_PROJECT)GUI.exe

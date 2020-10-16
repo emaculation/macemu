@@ -33,6 +33,11 @@ typedef unsigned long ioctlsockopt_t;
 # include <WS2tcpip.h>
 
 #ifdef __MINGW32__
+/* Once upon a time MINGW32 didn't have inet_ntop() and inet_pton() in the headers?
+   In a new mingw32 WS2tcpip.h that has them, the Inet*A defines point to them. */
+
+#ifndef InetNtopA
+
 char * WSAAPI inet_ntop(
   INT     Family,
   PVOID  pAddr,
@@ -40,12 +45,19 @@ char * WSAAPI inet_ntop(
   size_t StringBufSize
 );
 
+#endif
+
+#ifndef InetPtonA
+
 INT WSAAPI inet_pton(
   INT     Family,
   const char * pszAddrString,
   PVOID  pAddrBuf
 );
+
 #endif
+
+#endif /* __MINGW32__ */
 
 # include <sys/timeb.h>
 # include <iphlpapi.h>

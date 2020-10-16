@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/) after v1.0
 ### Deprecated
 
 ### Removed
+- BeOS support (can re-add if CI services can be found)
+- Amiga support (can re-add if CI services can be found)
 
 ### Fixed
 
@@ -341,7 +343,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/) after v1.0
 - BeOS `video_beos.cpp`: implemented `VideoQuitFullScreen()` (used by `ErrorAlert()`)
 
 ### Changed
-- Unix `video_x.cpp`: new hotkeys:  
+- Unix `video_x.cpp`: new hotkeys:
     Ctrl-Esc = emergency quit from DGA mode,
     Ctrl-Tab = suspend DGA mode
 

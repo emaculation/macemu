@@ -12,9 +12,7 @@ Basilisk II is an Open Source 68k Macintosh emulator. That is, it enables you to
 
 Basilisk II has currently been ported to the following systems:
 
-- BeOS R4 (PowerPC and x86)
 - Unix (tested under Linux, Solaris 2.x, FreeBSD 3.x, NetBSD 1.4.x and IRIX 6.5)
-- AmigaOS 3.x
 - Windows NT 4.0 (mostly works under Windows 95/98 too)
 - Mac OS X 10.1 thru 10.4
 
@@ -31,7 +29,7 @@ Some features of Basilisk II:
 - Serial drivers
 - SCSI Manager (old-style) emulation
 - Emulates extended ADB keyboard and 3-button mouse
-- Uses UAE 68k emulation or (under AmigaOS and NetBSD/m68k) real 68k processor
+- Uses UAE 68k emulation or real 68k processor
 
 The emulator is not yet complete. See the GitHub issues for a list of unimplemented stuff:
 https://github.com/emaculation/BasiliskII/issues
@@ -50,12 +48,11 @@ Basilisk II is configured via the preferences editor that appears on startup. If
 
 The settings are stored in a text file:
 
-OS                 | File
--------------------|:----
-BeOS               | `/boot/home/config/settings/BasiliskII_prefs`
-Unix, Mac OS X     | `~/.basilisk_ii_prefs`
-AmigaOS            | `ENV:BasiliskII_prefs`
-Windows            | `BasiliskII_prefs`
+OS        | File
+----------|:----
+Unix      | `~/.basilisk_ii_prefs`
+Mac OS X  | `~/.basilisk_ii_prefs`
+Windows   | `BasiliskII_prefs`
 
 (in the same directory as the executable)
 
@@ -71,19 +68,9 @@ This item describes one MacOS volume to be mounted by Basilisk II. There can be 
 
 Basilisk II can also handle some types of Mac "disk image" files directly, as long as they are uncompressed and unencoded.
 
-#### BeOS
-
-To specify an HFS partition, simply specify its path (e.g. `/dev/disk/scsi/0/1/0/0_3`). If you don't specify any volumes, Basilisk II will search for and use all available HFS partitions.
-
 #### Unix
 
 To specify an HFS partition, simply specify its path (e.g. `/dev/sda5`). If you want to access a MacOS-partitioned hard disk or removable volume (Jaz, Zip etc.) and your operating system doesn't understand MacOS partition tables, you can specify the block device name (e.g. `/dev/sda`) to access the first HFS partition on the device. Under Linux, if you don't specify any volumes, Basilisk II will search /etc/fstab for unmounted HFS partitions and use these.
-
-#### AmigaOS
-
-Partitions/drives are specified in the following format:
-`/dev/<device name>/<unit>/<open flags>/<start block>/<size>/<block size>`
-where "start block" and "size" are given in blocks, "block size" is given in bytes.
 
 #### Windows
 
@@ -99,17 +86,13 @@ This item describes one CD-ROM drive to be used by Basilisk II. There can be mul
 
 ### `extfs <direcory path>`
 
-This item specifies the root directory for the "Host Directory Tree" file system (the `Unix/BeOS/Amiga/...` icon on the Finder desktop). All objects contained in that directory are accessible by Mac applications.
+This item specifies the root directory for the "Host Directory Tree" file system (the `Unix/Windows...` icon on the Finder desktop). All objects contained in that directory are accessible by Mac applications.
 
 This feature is only available when File System Manager V1.2 or later is installed on the Mac side. FSM 1.2 is built-in beginning with MacOS 7.6 and can be installed as a system extension (downloadable from Apple, look for the FSM SDK in the developer section) for earlier MacOS versions.
 
 ### `scsi0 <SCSI target> ... scsi6 <SCSI target>`
 
 These items describe the SCSI target to be used for a given Mac SCSI ID by Basilisk II. Basilisk II emulates the old SCSI Manager and allows to assign a different SCSI target (they don't even have to be on the same SCSI bus) for each SCSI ID (`0..6`) as seen by the MacOS. `scsi0` describes the target for `ID 0`, `scsi1` the target for `ID 1`, etc. The format of the `SCSI target` is platform specific.
-
-#### BeOS
-
-The `SCSI target` has the format `<bus>/<unit>` (e.g. `0/2`). Due to a bug in BeOS, using SCSI with Basilisk II may cause the SCSI bus to hang. Use with caution.
 
 #### Linux
 
@@ -119,10 +102,6 @@ The `SCSI target` has to be the name of a device that complies tothe Generic SCS
 
 The `SCSI target` has the format `<id>/<lun>` (e.g. `2/0`).
 
-#### AmigaOS
-
-The `SCSI target` has the format `<device name>/<unit>` (e.g. `scsi.device/2`).
-
 #### Windows
 
 The `SCSI target` has the format `<"Vendor"> <"Model">` (e.g. `scsi0 "HP" "CD-Writer+ 7100"`). Note the use of quotes.
@@ -130,16 +109,6 @@ The `SCSI target` has the format `<"Vendor"> <"Model">` (e.g. `scsi0 "HP" "CD-Wr
 ### `screen <video mode>`
 
 This item describes the type of video display to be used by default for Basilisk II. If you are using a Mac Classic ROM, the display is always 1-bit 512x342 and this item is ignored. The format of the `video mode` is platform specific.
-
-#### BeOS
-
-The `video mode` is one of the following:
-
-- `win/<width>/<height>`
-  8-bit colour display in a window of the given size. This is the default.
-- `scr/<mode>`
-  Full-screen display in BWindowScreen. `<mode>` is the bit number of the video mode to use (see `headers/be/interface/GraphicsDefs.h`). E.g. `0 = 640x480x8`, `1 = 800x600x8`, etc., `10 = 640x480x24`, `11 = 800x600x24`, etc., `18 = 640x480x15`, `19 = 800x600x15`, etc. 15-bit modes are preferable to 16-bit modes (which may show false colours on PowerPC machines).
-  When you run in full-screen mode and switch to another Workspace, Basilisk II is put in "suspend" mode (i.e. MacOS will be frozen).
 
 #### Unix
 
@@ -153,17 +122,6 @@ The `video mode` is one of the following:
 - `dga/<frame buffer name>`
   [if Basilisk II was configured with `--enable-fbdev-dga`]
   Full-screen display using the frame buffer device `/dev/fb`. The colour depth (8/15/24 bit) depends on the depth of the underlying X11 screen. The "frame buffer name" is looked up in the "fbdevices" file (whose path can be specified with the "fbdevicefile" prefs item) to determine certain characteristics of the device (doing a `ls -l /dev/fb` should tell you what your frame buffer name is).
-
-#### AmigaOS
-
-The `video mode` is one of the following:
-
-- `win/<width>/<height>`
-  Black-and-white display in a window of the given size on the Workbench screen. This is the default and will also be used when one of the other options (PIP/screen) fails to open.
-- `pip/<width>/<height>`
-  15-bit truecolour display in a Picasso96 PIP. This requires Picasso96 as well as a PIP-capable graphics card (e.g. Picasso IV).
-- `scr/<hexadecimal mode ID>`
-  8/15/24-bit fullscreen display on a Picasso96/CyberGraphX screen with the given mode ID. This requires Picasso96 or CyberGraphX. For 15 and 24 bit, the frame buffer format must be QuickDraw-compatible (big-endian, xRGB 1:5:5:5 or xRGB 8:8:8:8). The screen size will be the default size for that mode ID.
 
 #### Windows
 
@@ -201,17 +159,9 @@ The `video mode` is one of the following:
 
 This item describes the serial port to be used as Port A (Modem Port) by Basilisk II. If no `seriala` line is given, Basilisk II will try to automatically detect and use installed serial ports. The "serial port description" is a platform-dependant description of a serial port.
 
-#### BeOS
-
-Either specify the name of a serial port (e.g. `serial1`) or one of `parallel1`, `parallel2` or `parallel3`. See below for more information about parallel ports.
-
 #### Unix
 
 Specify the device name of a serial port (e.g. `/dev/ttyS0`) or a parallel lp port (e.g. `/dev/lp1`; this only works under Linux and FreeBSD). See below for more information about parallel ports.
-
-#### AmigaOS
-
-You have to specify the name of the serial device and the device unit as `<device name>/<unit>` (e.g. `serial.device/0`). If the given device is not compatible to serial.device, Basilisk II will crash. If the device name starts with an asterisk (e.g. `*parallel.device/0`), the device is treated as a parallel.device compatible device. See below for more information about parallel ports.
 
 #### Windows
 
@@ -228,10 +178,6 @@ This item describes the serial port to be used as Port B (Printer Port) by Basil
 This item describes the Ethernet card to be used for Ethernet networking by Basilisk II. If no "ether" line is given, Ethernet networking is disabled (although the Ethernet driver of Basilisk II will behave like a "dummy" Ethernet card in this case). If you are using a Mac Classic ROM, Ethernet is not available and this setting is ignored. The "ethernet card description" is a platform-dependant description of an ethernet card.
 
 General note: To use TCP/IP from MacOS, you should assign a different IP address to the MacOS (entered into the MacOS TCP/IP (or MacTCP) control panel). Otherwise there will be confusion about which operating system will handle incoming packets.
-
-#### BeOS
-
-It doesn't matter what you give as "ethernet card description", Basilisk II will always use the first Ethernet card it finds as long an an "ether" line exists (e.g. say `ether yes`). Using Ethernet requires the `sheep_net` Net Server add-on to be installed. The first time you start Basilisk II with Ethernet enabled you will be asked whether it's OK to make the necessary changes to your BeOS network configuration to enable `sheep_net`.
 
 #### Linux
 
@@ -317,10 +263,6 @@ The `sheep_net` module is included in the Basilisk II source distribution in the
 #### FreeBSD
 
 The "ethertap" method described above also works under FreeBSD, but since no-one has found the time to write a section for this manual, you're on your own here...
-
-#### AmigaOS
-
-You have to specify the name of the SANA-II Ethernet device and the device unit as `<device name>/<unit>` (e.g. `ariadne.device/0`). If the given device is not a SANA-II device, Basilisk II will crash. If the device is not an Ethernet device, Basilisk II will display a warning message and disable Ethernet networking.
 
 #### Mac OS X
 
@@ -414,28 +356,6 @@ Set this to `true` to ignore illegal memory accesses. The default is `false` Thi
 
 Under Linux and FreeBSD, this specifies the devices to be used for sound output and volume control, respectively. The defaults are `/dev/dsp` and `/dev/mixer`.
 
-### AmigaOS
-
-#### `sound <sound output description>`
-
-This item specifies what method to use for sound output. The only choice is currently AHI, but you can specify the AHI mode ID to be used. The "sound output description" looks like this:
-
-```
-ahi/<hexadecimal mode ID>
-```
-
-#### `scsimemtype <type>`
-
-This item controls the type of memory to use for SCSI buffers. Possible values are:
-
-Value | Definition
-------|:----------
-0     | Chip memory
-1     | 24-bit DMA capable memory
-2     | Any memory
-
-Be warned that many SCSI host adapters will not work with the "Any memory" setting. Basilisk II has no way of knowing which memory type is supported by the host adapter and setting an unsupported type will result in data corruption.
-
 ### Windows
 
 #### `noscsi <"true" or "false">`
@@ -518,7 +438,7 @@ The right way to quit Basilisk II is to select the `Shut Down` menu item from th
 
 ### Suspending
 
-The Unix version of Basilisk II can be suspended while running in DGA mode by pressing `Tab` while holding the Ctrl key. Pressing `Space` in the "suspended" window will resume the emulation. Under BeOS, switching to a different Workspace when BasiliskII is in full-screen mode will also suspend the emulation.
+The Unix version of Basilisk II can be suspended while running in DGA mode by pressing `Tab` while holding the Ctrl key. Pressing `Space` in the "suspended" window will resume the emulation.
 
 ### Keyboard
 
@@ -530,7 +450,7 @@ Under Unix, pressing `Ctrl-F5` while the Basilisk II window is active will grab 
 
 ### Floppy
 
-Basilisk II can only handle 1.44 MB MFM floppies. Depending on your platform, floppy disk changes might not be detected automatically. Under Unix, press `Ctrl-F1` to mount a floppy. Under BeOS, select the appropriate `Mount` menu item or press `Ctrl-F1` to mount a floppy. Under Windows, press `Ctrl-Shift-F11`.
+Basilisk II can only handle 1.44 MB MFM floppies. Depending on your platform, floppy disk changes might not be detected automatically. Under Unix, press `Ctrl-F1` to mount a floppy.  Under Windows, press `Ctrl-Shift-F11`.
 
 ### HFS partitions
 
@@ -546,7 +466,7 @@ In addition to plain images of HFS volumes, Basilisk II can also handle some typ
 
 ### Mac Classic emulation
 
-Sound output and Ethernet are not supported if you are using a Mac Classic ROM. Also, the video display is fixed to 512x342 in monochrome. The AmigaOS and BeOS/PPC versions of Basilisk II cannot do Mac Classic emulation.
+Sound output and Ethernet are not supported if you are using a Mac Classic ROM. Also, the video display is fixed to 512x342 in monochrome.
 
 ### Video resolution switching
 
@@ -558,7 +478,7 @@ Sound output under Basilisk II requires Sound Manager 3.0 or later. This is incl
 
 ### Ethernet
 
-Basilisk II supports all Ethernet protocols. Running a protocol under Basilisk II that already runs within the host operating system on the same network card (e.g. running MacTCP under Basilisk II on a BeOS machine) may or may not work (generally, it should work, but some specific things like "ping" may not). If you have problems with FTP, try setting the FTP client to passive mode.
+Basilisk II supports all Ethernet protocols. Running a protocol under Basilisk II that already runs within the host operating system on the same network card may or may not work (generally, it should work, but some specific things like "ping" may not). If you have problems with FTP, try setting the FTP client to passive mode.
 
 ### LocalTalk
 

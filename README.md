@@ -21,8 +21,6 @@ Deprecated platforms:
 OS       | CI Status
 ---------|:---------
 FreeBSD  | [Costs Money 💰](https://cirrus-ci.org/pricing/)
-AmigaOS  | [No known service](https://github.com/emaculation/macemu/issues/81)
-BeOS     | [No known service](https://github.com/emaculation/macemu/issues/82)
 
 
 ### How To Build

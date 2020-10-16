@@ -58,9 +58,6 @@ links:
 	       include/prefs.h include/scsi.h include/serial.h \
 	       include/serial_defs.h include/sony.h include/sys.h \
 	       include/timer.h include/xpram.h \
-	       BeOS/audio_beos.cpp BeOS/extfs_beos.cpp BeOS/scsi_beos.cpp \
-	       BeOS/serial_beos.cpp BeOS/sys_beos.cpp BeOS/timer_beos.cpp \
-	       BeOS/xpram_beos.cpp BeOS/SheepDriver BeOS/SheepNet \
 	       CrossPlatform/sigsegv.h CrossPlatform/sigsegv.cpp CrossPlatform/vm_alloc.h CrossPlatform/vm_alloc.cpp \
                CrossPlatform/video_vosf.h CrossPlatform/video_blit.h CrossPlatform/video_blit.cpp \
 	       Unix/audio_oss_esd.cpp Unix/bincue_unix.cpp Unix/bincue_unix.h \
@@ -99,7 +96,7 @@ links:
 	    case $$i in *codegen_x86.h) o=kpx_cpu/src/cpu/jit/x86/codegen_x86.h;; esac; \
 	    SUB=`echo $$o | sed 's;[^/]*/;../;g' | sed 's;[^/]*$$;;'` ;\
 	    cur_link=src/$$o ;\
-	    if [ -d "$$cur_link" ]; then rm -rf "$$cur_link"; fi ;\
+	    if [ -e "$$cur_link" ]; then rm -rf "$$cur_link"; fi ;\
 	    ln -sf "$$PREFIX$$SUB$(B2_TOPDIR)/src/$$i" $$cur_link; \
 	  fi; \
 	done;

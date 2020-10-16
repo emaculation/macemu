@@ -6,17 +6,9 @@ To use Basilisk II, you need either a 512K Mac Classic ROM image or a 512K or 1M
 
 Depending on the platform you use, Basilisk II has additional requirements:
 
-### BeOS
-
-You need BeOS R4 or later versions. Basilisk II cannot do Mac Classic emulation.
-
 ### Unix
 
 You need X11R6 and a "make" utility with the VPATH feature (e.g. GNU make). For serial, ethernet and audio support, you need pthreads. To use the GUI preferences editor, you also need GTK+ version 1.2 or better. On Linux, you need glibc 2.0 or better.
-
-### AmigaOS
-
-You need at least a 68020 and AmigaOS 3.0 or better. To get the GUI preferences editor, you need gtlayout.library V39 or later. To get sound output, you need AHI V2 or later. Both items can be found on Aminet. You also need the "PrepareEmul" utility that somes with ShapeShifter (or any equivalent PrepareEmul substitute). The AmigaOS version of Basilisk II cannot do Mac Classic emulation.
 
 ### Windows
 
@@ -27,31 +19,6 @@ You need at least Windows NT 4.0. Windows 95 and 98 can be used too, with a some
 Versions 10.0 thru 10.2 can be used, and 10.3 will probably be no problem. (OS X public beta is not supported by the current executable or source code, but if you really need to use it, I can provide versions that will work)
 
 ## Installation
-
-### BeOS
-
-If you have a binary distribution of Basilisk II for BeOS, there are executables for BeOS/PPC and/or BeOS/x86 included. Basilisk II cannot run concurrently with SheepShaver. Trying to do so will crash Basilisk II, or SheepShaver, or both.
-
-If you have the source distribution, do the following:
-
-```shell
-cd src/BeOS
-make
-```
-
-This will produce an executable "BasiliskII" in the "obj.ppc" or "obj.x86" directory. To use Ethernet, you also have to do:
-
-```shell
-cd SheepNet
-make install
-```
-
-On a PowerPC system, you also have to do:
-
-```shell
-cd SheepDriver
-make install
-```
 
 ### Unix
 
@@ -82,7 +49,7 @@ Current (as of July 2000) versions of the NetBSD/mac68k kernel have a bug that n
 --- macromasm.s.orig    Wed Jul  5 19:29:01 2000
 +++ macromasm.s Wed Jul  5 19:12:34 2000
 @@ -37,6 +37,8 @@
- 
+
  #include "opt_adb.h"
  #include "assym.h"
 +#include <machine/asm.h>
@@ -103,17 +70,6 @@ Current (as of July 2000) versions of the NetBSD/mac68k kernel have a bug that n
  #define FR_PC (FR_HW+2)
         movl    sp@(FR_PC + 4), a0      | retrieve PC
 ```
-
-### AmigaOS
-
-If you have a binary distribution of Basilisk II for AmigaOS, there is an executable included. You must also have the "PrepareEmul" utility installed that comes with ShapeShifter (or any equivalent PrepareEmul substitute, see the ShapeShifter docs). If you have the source distribution, do the following:
-
-```
-cd src/AmigaOS
-make
-```
-
-To recompile Basilisk II, you need the GeekGadgets development suite and PhxAss (which can be found on Aminet).
 
 ### Windows NT
 

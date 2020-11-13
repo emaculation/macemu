@@ -20,7 +20,7 @@ See links for other testsuites. As of **2006-07-04**, the current SheepShaver CV
 ## Downloads
 
 - The primary source is available in SheepShaver CVS.
-- It is recommended that you first run the tester on a native PowerPC platform to generate a results file. For reference, here is the [[this>projects/ppctester/files/ppc-testresults.dat.bz2|PowerPC Emulator Tester results file]] I use for SheepShaver. This was generated with AltiVec tests enabled. This is for revision 1.30+ of the file. md5sum is: `3e29432abb6e21e625a2eef8cf2f0840`. **Caveat:** On 2019-03-02 the tests result file is not available in this GitHub repository. RK
+- It is recommended that you first run the tester on a native PowerPC platform to generate a results file. For reference, here is the [PowerPC Emulator Tester results file](test/ppctester/ppc-testresults.dat.bz2) I use for SheepShaver. This was generated with AltiVec tests enabled. This is for revision 1.30+ of the file. md5sum of the uncompressed file is: `3e29432abb6e21e625a2eef8cf2f0840`. 
 
 ## Links
 

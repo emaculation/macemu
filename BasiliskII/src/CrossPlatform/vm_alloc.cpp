@@ -83,6 +83,10 @@ typedef unsigned long vm_uintptr_t;
 #define MAP_ANONYMOUS 0
 #endif
 
+/* NOTE: on linux MAP_32BIT is only implemented on AMD64
+   it is a null op on all other architectures
+   thus the MAP_BASE setting below is the only thing
+   ensuring low addresses on aarch64 for example */
 #define MAP_EXTRA_FLAGS (MAP_32BIT)
 
 #ifdef HAVE_MMAP_VM
@@ -91,7 +95,18 @@ typedef unsigned long vm_uintptr_t;
    don't get addresses above when the program is run on AMD64.
    NOTE: this is empirically determined on Linux/x86.  */
 #define MAP_BASE	0x10000000
-#else
+#elif !REAL_ADDRESSING
+/* linux does not implement any useful fallback behavior
+   such as allocating the next available address
+   and the first 4k-64k of address space is marked unavailable
+   for security reasons (see https://wiki.debian.org/mmap_min_addr)
+   so we must start requesting after the first page
+   (or we get a high 64bit address and break on aarch64)
+
+   leaving NULL unmapped is a good idea anyway for debugging reasons
+   so we do this unconditionally on all platforms */
+#define MAP_BASE	0x00010000
+#else /* must be 0x0 when REAL_ADDRESSING=1 */
 #define MAP_BASE	0x00000000
 #endif
 static char * next_address = (char *)MAP_BASE;

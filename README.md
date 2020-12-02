@@ -1,5 +1,7 @@
 # Mac Emulation
 
+[![Gitter](https://badges.gitter.im/emaculation/macemu.svg)](https://gitter.im/emaculation/macemu?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 This repository contains the [BasiliskII](BasiliskII/) and [SheepShaver](SheepShaver/) projects.  It is an attempt to centralize the individual development efforts that have gone on in the absence of the original [cebix/macemu](https://github.com/cebix/macemu) repository owner.
 
 The [cxmon](https://github.com/emaculation/cxmon) project has been split from this repository.

@@ -1595,12 +1595,14 @@ if [[ "x$EMULATED_PPC" = "xyes" ]]; then
       fi
       if [[ -z "$DYNGEN_CC" -o "x$DYNGEN_CC" = "xprecompiled" ]]; then
         case $host_cpu in
-          i?86)
-            ac_cv_use_dyngen_precompiled=yes
-            ;;
-          x86_64)
-            ac_cv_use_dyngen_precompiled=yes
-            ;;
+	  # precompiled dyngens need rebuilds for the new default of direct addressing
+
+          #i?86)
+          #  ac_cv_use_dyngen_precompiled=yes
+          #  ;;
+          #x86_64)
+          #  ac_cv_use_dyngen_precompiled=yes
+          #  ;;
           *)
             ac_cv_use_dyngen=no
             ;;

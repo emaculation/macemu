@@ -29,7 +29,7 @@ case $target_os in
 esac
 
 dnl Options.
-AC_ARG_ENABLE(jit,          [  --enable-jit            enable JIT compiler [default=yes]], [WANT_JIT=$enableval], [WANT_JIT=yes])
+AC_ARG_ENABLE(jit,          [  --enable-jit            enable JIT compiler [default=no]], [WANT_JIT=$enableval], [WANT_JIT=no])
 AC_ARG_ENABLE(ppc-emulator, [  --enable-ppc-emulator   use the selected PowerPC emulator [default=auto]], [WANT_EMULATED_PPC=$enableval], [WANT_EMULATED_PPC=auto])
 AC_ARG_ENABLE(fbdev-dga,    [  --enable-fbdev-dga      use direct frame buffer access via /dev/fb0 [default=yes]], [WANT_FBDEV_DGA=$enableval], [WANT_FBDEV_DGA=yes])
 AC_ARG_ENABLE(xf86-dga,     [  --enable-xf86-dga       use the XFree86 DGA extension [default=yes]], [WANT_XF86_DGA=$enableval], [WANT_XF86_DGA=yes])

@@ -494,7 +494,7 @@ static void add_mode(int type, int width, int height, int resolution_id, int byt
 // Set Mac frame layout and base address (uses the_buffer/MacFrameBaseMac)
 static void set_mac_frame_buffer(SDL_monitor_desc &monitor, int depth)
 {
-#if !DIRECT_ADDRESSING
+#if !REAL_ADDRESSING && !DIRECT_ADDRESSING
 	int layout = FLAYOUT_DIRECT;
 	if (depth == VIDEO_DEPTH_16BIT)
 		layout = (screen_depth == 15) ? FLAYOUT_HOST_555 : FLAYOUT_HOST_565;
@@ -2124,7 +2124,7 @@ static void video_refresh_dga(void)
 }
 
 #ifdef ENABLE_VOSF
-#if DIRECT_ADDRESSING
+#if REAL_ADDRESSING || DIRECT_ADDRESSING
 static void video_refresh_dga_vosf(void)
 {
 	// Quit DGA mode if requested
@@ -2187,7 +2187,7 @@ static void VideoRefreshInit(void)
 {
 	// TODO: set up specialised 8bpp VideoRefresh handlers ?
 	if (display_type == DISPLAY_SCREEN) {
-#if ENABLE_VOSF && DIRECT_ADDRESSING
+#if ENABLE_VOSF && (REAL_ADDRESSING || DIRECT_ADDRESSING)
 		if (use_vosf)
 			video_refresh = video_refresh_dga_vosf;
 		else

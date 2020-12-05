@@ -66,20 +66,6 @@
 #include <mach/clock.h>
 #endif
 
-#ifdef ENABLE_NATIVE_M68K
-
-/* Mac and host address space are the same */
-#define REAL_ADDRESSING 1
-
-/* Using 68k natively */
-#define EMULATED_68K 0
-
-/* Mac ROM is not write protected */
-#define ROM_IS_WRITE_PROTECTED 0
-#define USE_SCRATCHMEM_SUBTERFUGE 1
-
-#else
-
 /* Mac and host address space are distinct */
 #ifndef REAL_ADDRESSING
 #define REAL_ADDRESSING 0
@@ -97,8 +83,6 @@
 # define USE_SCRATCHMEM_SUBTERFUGE 1
 #else
 # define ROM_IS_WRITE_PROTECTED 1
-#endif
-
 #endif
 
 /* Direct Addressing requires Video on SEGV signals in plain X11 mode */

@@ -39,7 +39,7 @@
 # include <pthread.h>
 #endif
 
-#if REAL_ADDRESSING || DIRECT_ADDRESSING
+#if DIRECT_ADDRESSING
 # include <sys/mman.h>
 #endif
 
@@ -146,10 +146,6 @@ static timer_t timer;				// 60Hz timer
 #ifdef ENABLE_MON
 static struct sigaction sigint_sa;	// sigaction for SIGINT handler
 static void sigint_handler(...);
-#endif
-
-#if REAL_ADDRESSING
-static bool lm_area_mapped = false;	// Flag: Low Memory area mmap()ped
 #endif
 
 static rpc_connection_t *gui_connection = NULL;	// RPC connection to the GUI
@@ -541,56 +537,14 @@ int main(int argc, char **argv)
 	if (RAMSize > 1023*1024*1024)						// Cap to 1023MB (APD crashes at 1GB)
 		RAMSize = 1023*1024*1024;
 
-#if REAL_ADDRESSING || DIRECT_ADDRESSING
+#if DIRECT_ADDRESSING
 	RAMSize = RAMSize & -getpagesize();					// Round down to page boundary
 #endif
 	
 	// Initialize VM system
 	vm_init();
 
-#if REAL_ADDRESSING
-	// Flag: RAM and ROM are contigously allocated from address 0
-	bool memory_mapped_from_zero = false;
-
-	// Make sure to map RAM & ROM at address 0 only on platforms that
-	// supports linker scripts to relocate the Basilisk II executable
-	// above 0x70000000
-#if HAVE_LINKER_SCRIPT
-	const bool can_map_all_memory = true;
-#else
-	const bool can_map_all_memory = false;
-#endif
-	
-	// Try to allocate all memory from 0x0000, if it is not known to crash
-	if (can_map_all_memory && (vm_acquire_mac_fixed(0, RAMSize + 0x100000) == 0)) {
-		D(bug("Could allocate RAM and ROM from 0x0000\n"));
-		memory_mapped_from_zero = true;
-	}
-	
-#ifndef PAGEZERO_HACK
-	// Otherwise, just create the Low Memory area (0x0000..0x2000)
-	else if (vm_acquire_mac_fixed(0, 0x2000) == 0) {
-		D(bug("Could allocate the Low Memory globals\n"));
-		lm_area_mapped = true;
-	}
-	
-	// Exit on failure
-	else {
-		sprintf(str, GetString(STR_LOW_MEM_MMAP_ERR), strerror(errno));
-		ErrorAlert(str);
-		QuitEmulator();
-	}
-#endif
-#endif /* REAL_ADDRESSING */
-
 	// Create areas for Mac RAM and ROM
-#if REAL_ADDRESSING
-	if (memory_mapped_from_zero) {
-		RAMBaseHost = (uint8 *)0;
-		ROMBaseHost = RAMBaseHost + RAMSize;
-	}
-	else
-#endif
 	{
 		uint8 *ram_rom_area = (uint8 *)vm_acquire_mac(RAMSize + 0x100000);
 		if (ram_rom_area == VM_MAP_FAILED) {	
@@ -615,10 +569,6 @@ int main(int argc, char **argv)
 	// RAMBaseMac shall always be zero
 	MEMBaseDiff = (uintptr)RAMBaseHost;
 	RAMBaseMac = 0;
-	ROMBaseMac = Host2MacAddr(ROMBaseHost);
-#endif
-#if REAL_ADDRESSING
-	RAMBaseMac = Host2MacAddr(RAMBaseHost);
 	ROMBaseMac = Host2MacAddr(ROMBaseHost);
 #endif
 	D(bug("Mac RAM starts at %p (%08x)\n", RAMBaseHost, RAMBaseMac));
@@ -809,12 +759,6 @@ void QuitEmulator(void)
 	}
 #endif
 
-#if REAL_ADDRESSING
-	// Delete Low Memory area
-	if (lm_area_mapped)
-		vm_release(0, 0x2000);
-#endif
-	
 	// Exit VM wrappers
 	vm_exit();
 

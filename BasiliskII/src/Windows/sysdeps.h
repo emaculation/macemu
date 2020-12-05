@@ -56,9 +56,6 @@
 #error "Real Addressing mode can't work without proper kernel support"
 #endif
 
-/* Using 68k emulator */
-#define EMULATED_68K 1
-
 /* The m68k emulator uses a prefetch buffer ? */
 #define USE_PREFETCH_BUFFER 0
 

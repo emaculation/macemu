@@ -71,9 +71,6 @@
 #define REAL_ADDRESSING 0
 #endif
 
-/* Using 68k emulator */
-#define EMULATED_68K 1
-
 /* The m68k emulator uses a prefetch buffer ? */
 #define USE_PREFETCH_BUFFER 0
 
@@ -101,10 +98,8 @@
 #ifdef HAVE_PTHREADS
 #define USE_PTHREADS_SERVICES
 #endif
-#if EMULATED_68K
 #if defined(__NetBSD__)
 #define USE_CPU_EMUL_SERVICES
-#endif
 #endif
 #ifdef USE_CPU_EMUL_SERVICES
 #undef USE_PTHREADS_SERVICES

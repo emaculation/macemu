@@ -126,11 +126,6 @@ if [[ "x$BII_CROSS_MPROTECT_WORKS" = "x" ]]; then
 	BII_CROSS_MPROTECT_WORKS="guessing no"
 fi
 
-AC_ARG_VAR(BII_CROSS_MAP_LOW_AREA, [  Whether the target system can map 0x2000 bytes from 0x0000 [default=guessing no]])
-if [[ "x$BII_CROSS_MAP_LOW_AREA" = "x" ]]; then
-	BII_CROSS_MAP_LOW_AREA="guessing no"
-fi
-
 AC_ARG_VAR(BII_CROSS_SIGNAL_NEED_REINSTALL, [  Whether the target system needs signal handlers to be reinstalled [default=guessing yes]])
 if [[ "x$BII_CROSS_SIGNAL_NEED_REINSTALL" = "x" ]]; then
 	BII_CROSS_SIGNAL_NEED_REINSTALL="guessing yes"

@@ -57,13 +57,13 @@ AC_ARG_WITH(libvhd,
 
 dnl Addressing mode
 AC_ARG_ENABLE(addressing,
-  [  --enable-addressing=AM  set the addressing mode to use [default=real]],
+  [  --enable-addressing=AM  set the addressing mode to use [default=direct]],
   [case "$enableval" in
    real)        WANT_ADDRESSING_MODE="real";;
    direct)      WANT_ADDRESSING_MODE="direct";;
    direct,0x*)  WANT_ADDRESSING_MODE="direct"; NATMEM_OFFSET=`echo "$enableval" | sed -n '/direct,\(0[[xX]][[0-9A-Fa-f]]*\([[UuLl]]\{1,2\}\)\?\)$/s//\1/p'`;;
    esac],
-  [WANT_ADDRESSING_MODE="real"]
+  [WANT_ADDRESSING_MODE="direct"]
 )
 
 dnl SDL options.
@@ -1595,12 +1595,14 @@ if [[ "x$EMULATED_PPC" = "xyes" ]]; then
       fi
       if [[ -z "$DYNGEN_CC" -o "x$DYNGEN_CC" = "xprecompiled" ]]; then
         case $host_cpu in
-          i?86)
-            ac_cv_use_dyngen_precompiled=yes
-            ;;
-          x86_64)
-            ac_cv_use_dyngen_precompiled=yes
-            ;;
+	  # precompiled dyngens need rebuilds for the new default of direct addressing
+
+          #i?86)
+          #  ac_cv_use_dyngen_precompiled=yes
+          #  ;;
+          #x86_64)
+          #  ac_cv_use_dyngen_precompiled=yes
+          #  ;;
           *)
             ac_cv_use_dyngen=no
             ;;

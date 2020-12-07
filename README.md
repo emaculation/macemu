@@ -6,6 +6,18 @@ This repository contains the [BasiliskII](BasiliskII/) and [SheepShaver](SheepSh
 
 The [cxmon](https://github.com/emaculation/cxmon) project has been split from this repository.
 
+### Goal of this fork
+
+Many of the architectures on which this codebase originally ran are no longer in production, and several are not readily testable with modern distributed CI/CD services.  It is the opinion of this maintiner that such a situation is an existential threat to the future of the project as a whole:
+
+* if testing requires the use of antique hardware or usage of bespoke 3rd-party testing services for old architectures, we can't provide continuous integration of pull requests
+* if we can't provide continuous integration of pull requests, we can't make informed decisions about accepting patches
+* if we can't make informed decisions about accepting patches, the project can't evolve from open-source contributions
+
+> As such, be prepared to offer tests (or guidance on _how_ to perform automated testing) on any contributions.
+
+To date, the following architectures are functioning with a bare minimum of continuous integration testing.  These are the only architectures that will be maintained, unless other CI services for other architectures can be added.
+
 Target      | Options      | Windows MinGW | OSX  | Linux
 ------------|:-------------|:--------------|:-----|:------
 BasiliskII  |32-bit, no JIT| - | - | -
@@ -18,26 +30,28 @@ SheepShaver |64-bit, no JIT| - | - | -
 SheepShaver |64-bit, JIT   | - | [![OSX Build Status](http://badges.herokuapp.com/travis/emaculation/macemu?env=BADGE=osx-sheepshaver&label=build&branch=master)](https://travis-ci.org/emaculation/macemu) | -
 
 
-Deprecated platforms:
+#### Deprecated platforms
 
 OS       | CI Status
 ---------|:---------
-FreeBSD  | [Costs Money 💰](https://cirrus-ci.org/pricing/)
+FreeBSD  | [💰 Costs Money](https://cirrus-ci.org/pricing/)
+BeOS R4 (PowerPC and x86) | 📉 No longer available
+AmigaOS 3.x | 📉 No longer available
 
 
-### How To Build
+## How To Build
 
 These builds need the SDL2 framework/library to be installed.
 
 `.travis.yml` and `appveyor.yml` contain the build scripts for CI.  More generally, here are the steps:
 
-#### BasiliskII
-##### macOS
+### BasiliskII
+#### macOS
 1. Open BasiliskII/src/MacOSX/BasiliskII.xcodeproj
 1. Set Build Configuration to Release
 1. Build
 
-##### Linux(x86)
+#### Linux(x86)
 ```
 $ cd macemu/BasiliskII/src/Unix
 $ ./autogen.sh
@@ -49,13 +63,13 @@ $ cd macemu/BasiliskII/src/Windows
 $ ../Unix/autogen.sh
 $ make
 ```
-#### SheepShaver
-##### macOS
+### SheepShaver
+#### macOS
 1. Open SheepShaver/src/MacOSX/SheepShaver.xcodeproj
 1. Set Build Configuration to Release
 1. Build
 
-##### Linux(x86)
+#### Linux(x86)
 ```
 $ cd macemu/SheepShaver
 $ make links
@@ -63,7 +77,7 @@ $ cd src/Unix
 $ ./autogen.sh
 $ make
 ```
-##### MinGW32/MSYS
+#### MinGW32/MSYS
 ```
 $ cd macemu/SheepShaver
 $ make links

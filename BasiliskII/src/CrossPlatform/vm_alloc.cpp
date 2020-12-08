@@ -270,10 +270,11 @@ void * vm_acquire(size_t size, int options)
 		return VM_MAP_FAILED;
 	
 #if DIRECT_ADDRESSING
-	// Sanity check to prevent crash on 64-bit when direct addressing
-	// FIXME: this results in a misleading "out of memory" error to the user when it fails
-	if (sizeof(void *) == 8 && (options & VM_MAP_32BIT) && !((char *)addr <= (char *)0xffffffff))
-		return VM_MAP_FAILED;
+	// If VM_MAP_32BIT and MAP_BASE fail to ensure
+	// a 32-bit address crash now instead of later.
+	// FIXME: make everything 64-bit clean and tear this all out.
+	if(sizeof(void *) > 4 && (options & VM_MAP_32BIT))
+		assert((size_t)addr<0xffffffffL);
 #endif
 
 	next_address = (char *)addr + size;
